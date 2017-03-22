@@ -1,0 +1,221 @@
+//
+//  PaletteDetailViewController.swift
+//  Palette1.0
+//
+//  Created by Alexander Mathers on 2016-03-01.
+//  Copyright © 2016 Malecks. All rights reserved.
+//
+
+import UIKit
+import MBProgressHUD
+
+class PaletteDetailViewController: UIViewController {
+    
+    @IBOutlet var paletteDetailCollectionView: UICollectionView!
+    @IBOutlet var headerView: UIView!
+    
+    fileprivate var headerImage: UIImage?
+    fileprivate var headerContainerViewImage: UIImage?
+    
+    var palette: Palette!
+    var paletteIndex: Int!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpViews()
+    }
+    
+    private func setUpViews() {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = documentsURL.appendingPathComponent(palette.imageURL)
+        
+        if let data = try? Data(contentsOf: fileURL) {
+            headerImage = UIImage(data: data)
+        }
+        
+        if let colors = palette.colors {
+            if colors.count > 0 {
+                let randomNum: Int = Int(arc4random_uniform(UInt32(colors.count)))
+                let randomColour = colors[randomNum]
+                let backgroundView = UIImageView(frame: view.frame)
+                let backgroundImage = UIImage().createBackgroundImageWithColor(randomColour)
+                backgroundView.image = backgroundImage
+                view.insertSubview(backgroundView, at: 0)
+            }
+        }
+        
+        headerView.layer.masksToBounds = false
+        headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
+        headerView.layer.shadowRadius = 0
+        headerView.layer.shadowOpacity = 0.1
+    }
+    
+    @IBAction private func didTapDeleteButton() {
+        let alertController = UIAlertController(
+            title: "Delete Palette",
+            message: "Are you sure you want to delete this pretty palette? You can't undo this.",
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .cancel,
+            handler: nil
+        ))
+        
+        alertController.addAction(UIAlertAction(
+            title: "Delete",
+            style: .destructive,
+            handler: { action in
+                self.deletePalette()
+                self.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func deletePalette() {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = documentsURL.appendingPathComponent(palette.imageURL)
+        
+        do {
+            try FileManager.default.removeItem(at: fileURL)
+        } catch {
+            print(error)
+        }
+        
+        // delete palette object from array
+        let defaults = UserDefaults.standard
+        if var encodedArray = defaults.object(forKey: "palettesArray") as? [Data] {
+            encodedArray.remove(at: paletteIndex)
+            defaults.set(encodedArray, forKey: "palettesArray")
+        }
+        
+        defaults.synchronize()
+    }
+    
+    @IBAction private func backButton(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction private func shareButton(_ sender: AnyObject) {
+        guard let imageToShare = headerContainerViewImage else { return }
+        
+        let objectsToShare = [imageToShare]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        
+        self.present(activityVC, animated: true, completion: nil)
+    }
+}
+
+extension PaletteDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return palette.colors.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PaletteDetailCollectionViewCell", for: indexPath) as! PaletteDetailCollectionViewCell
+        
+        let color = palette.colors[indexPath.row]
+        let hex = color.hexString()
+        let rgb = color.rgbString()
+        cell.colorView.layer.cornerRadius = cell.colorView.frame.size.height / 2.0
+        cell.colorView.backgroundColor = color
+        cell.hexLabel.text = "#\(hex)"
+        cell.RGBLabel.text = rgb
+        
+        cell.layer.cornerRadius = cell.frame.size.height / 2.0
+        return cell
+    }
+    
+    // CollectionView Header & Footer
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        var reusableView: UICollectionReusableView!
+        
+        if (kind == UICollectionElementKindSectionHeader) {
+            let headerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionElementKindSectionHeader,
+                withReuseIdentifier: "PaletteDetailCollectionReusableView",
+                for: indexPath) as! PaletteDetailCollectionReusableView
+            
+            if let image = headerImage {
+                headerView.imageView.image = image
+            }
+            
+            if let colors = palette.colors {
+                for view in headerView.stackView.subviews {
+                    headerView.stackView.removeArrangedSubview(view)
+                }
+                
+                for color in colors {
+                    let view = UIView()
+                    view.backgroundColor = color
+                    headerView.stackView.addArrangedSubview(view)
+                }
+            }
+            
+            headerContainerViewImage = headerView.containerView.takeSnapshot(headerView.containerView)
+            
+            // add corner radius after creating reference so that shared photos have square edges
+            headerView.containerView.layer.cornerRadius = 9
+            headerView.containerView.clipsToBounds = true
+            reusableView = headerView
+        }
+        
+        if (kind == UICollectionElementKindSectionFooter) {
+            let footerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionElementKindSectionFooter,
+                withReuseIdentifier: "PaletteDetailCollectionFooterView",
+                for: indexPath) as! PaletteDetailCollectionFooterView
+            
+            footerView.containerView.layer.cornerRadius = footerView.containerView.frame.size.height / 2.0
+            reusableView = footerView
+        }
+        
+        reusableView.clipsToBounds = true
+        return reusableView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let color = palette.colors[indexPath.row]
+        let hex = color.hexString()
+        var colorString = "#\(hex)"
+        if let rgb = color.rgbString() {
+            colorString += " \(rgb)"
+        }
+        
+        UIPasteboard.general.string = colorString
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = .text
+        
+        hud.label.font = UIFont(name: "Menlo", size: 15)!
+        hud.label.text = "\(colorString)"
+        
+        hud.detailsLabel.font = UIFont(name: "Menlo", size: 12)!
+        hud.detailsLabel.text = "copied to clipboard"
+        
+        hud.hide(animated: true, afterDelay: 1)
+    }
+}
+
+extension PaletteDetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let flowLayout: UICollectionViewFlowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let availableWidthForCells: CGFloat = collectionView.frame.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumInteritemSpacing
+        let itemSize = CGSize(width: availableWidthForCells, height: flowLayout.itemSize.height)
+        return itemSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let flowLayout: UICollectionViewFlowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let availableWidthForCells: CGFloat =
+            collectionView.frame.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumInteritemSpacing
+        let itemSize = CGSize(
+            width: availableWidthForCells,
+            height: availableWidthForCells + 80
+        )
+        return itemSize
+    }
+}

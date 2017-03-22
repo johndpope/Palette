@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="InspirationEmptyView" customModule="Palette" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0nV-kD-po5">
+                    <rect key="frame" x="20" y="228.5" width="335" height="210"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzB-LM-Ate">
+                            <rect key="frame" x="0.0" y="135" width="335" height="75"/>
+                            <color key="backgroundColor" red="1" green="0.94860309362411499" blue="0.0049275299534201622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="75" id="Yi1-bK-GX4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                            <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                            <state key="normal" title="Reload" image="ic_signal_wifi_off"/>
+                            <connections>
+                                <action selector="didTapMainButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="hNo-pU-sKl"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maybe check your wifi?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2L-CV-NLf">
+                            <rect key="frame" x="20" y="30" width="295" height="75"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="75" id="gyz-Fq-6bo"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="b2L-CV-NLf" firstAttribute="top" secondItem="0nV-kD-po5" secondAttribute="top" constant="30" id="1zy-EU-G6U"/>
+                        <constraint firstItem="b2L-CV-NLf" firstAttribute="leading" secondItem="0nV-kD-po5" secondAttribute="leading" constant="20" id="3f5-Aq-ERv"/>
+                        <constraint firstItem="bzB-LM-Ate" firstAttribute="top" secondItem="b2L-CV-NLf" secondAttribute="bottom" constant="30" id="9Um-FD-SaK"/>
+                        <constraint firstAttribute="trailing" secondItem="bzB-LM-Ate" secondAttribute="trailing" id="ILc-Rv-T52"/>
+                        <constraint firstItem="bzB-LM-Ate" firstAttribute="leading" secondItem="0nV-kD-po5" secondAttribute="leading" id="KCN-Gz-e22"/>
+                        <constraint firstAttribute="trailing" secondItem="b2L-CV-NLf" secondAttribute="trailing" constant="20" id="pQw-6I-ClI"/>
+                        <constraint firstAttribute="bottom" secondItem="bzB-LM-Ate" secondAttribute="bottom" id="yy0-8M-ah2"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="0nV-kD-po5" secondAttribute="trailing" constant="20" id="Aaq-1a-SYq"/>
+                <constraint firstItem="0nV-kD-po5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="OD2-A7-tRP"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="0nV-kD-po5" secondAttribute="bottom" constant="20" id="cs7-qQ-hvi"/>
+                <constraint firstItem="0nV-kD-po5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zJj-6l-rWp"/>
+                <constraint firstItem="0nV-kD-po5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="zfy-2N-3N5"/>
+            </constraints>
+            <connections>
+                <outlet property="containerView" destination="0nV-kD-po5" id="FmS-v6-NDW"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="-62"/>
+        </view>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nwS-YF-T2F">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <nil key="textColor"/>
+            <nil key="highlightedColor"/>
+        </label>
+    </objects>
+    <resources>
+        <image name="ic_signal_wifi_off" width="24" height="24"/>
+    </resources>
+</document>
