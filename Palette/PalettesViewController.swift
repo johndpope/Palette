@@ -72,6 +72,15 @@ class PalettesViewController: UIViewController {
             }
         }
     }
+    
+    func scrollToTop() {
+        guard arrayOfPalettes.count > 0 else { return }
+        self.paletteCollectionView.scrollToItem(
+            at: IndexPath(row: 0, section: 0),
+            at: UICollectionViewScrollPosition.centeredVertically,
+            animated: true
+        )
+    }
 }
 
 extension PalettesViewController: UICollectionViewDataSource {

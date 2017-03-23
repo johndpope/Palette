@@ -44,11 +44,19 @@ final class PageViewController: UIPageViewController, UIPageViewControllerDataSo
         let palettesViewController = storyBoard.instantiateViewController(withIdentifier: "PaletteView") as! PalettesViewController
         
         cameraViewController.didSavePalette = {
-            self.setViewControllers([palettesViewController], direction: .forward, animated: true, completion: nil)
+            self.setViewControllers([palettesViewController], direction: .forward, animated: true, completion: { complete in
+                if complete {
+                    palettesViewController.scrollToTop()
+                }
+            })
         }
         
         inspirationViewController.didSavePalette = {
-            self.setViewControllers([palettesViewController], direction: .reverse, animated: true, completion: nil)
+            self.setViewControllers([palettesViewController], direction: .reverse, animated: true, completion: { complete in
+                if complete {
+                    palettesViewController.scrollToTop()
+                }
+            })
         }
         
         palettesViewController.showCameraView = {
