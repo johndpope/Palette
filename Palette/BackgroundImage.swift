@@ -9,24 +9,21 @@
 import UIKit
 
 extension UIImage {
-    func createBackgroundImageWithColor(_ color:UIColor) -> UIImage {
+    func createBackgroundImageWithColor(_ color:UIColor) -> UIImage? {
+        let img = #imageLiteral(resourceName: "Background")
+        let rect = CGRect(x: 0, y: 0, width: img.size.width, height: img.size.height)
         
-        var result: UIImage?
-        if let img = UIImage(named: "Background") {
-            let rect = CGRect(x: 0, y: 0, width: img.size.width, height: img.size.height)
-            
-            UIGraphicsBeginImageContextWithOptions(img.size, true, 0)
-            let context = UIGraphicsGetCurrentContext()
-            
-            context?.setFillColor(color.cgColor)
-            context?.fill(rect)
-            
-            img.draw(in: rect, blendMode: .screen, alpha: 1)
-            
-            // grab the finished image and return it
-            result = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-        }
-        return result!
+        UIGraphicsBeginImageContextWithOptions(img.size, true, 0)
+        let context = UIGraphicsGetCurrentContext()
+        
+        context?.setFillColor(color.cgColor)
+        context?.fill(rect)
+        
+        img.draw(in: rect, blendMode: .screen, alpha: 1)
+        
+        // grab the finished image and return it
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result
     }
 }

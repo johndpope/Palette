@@ -99,6 +99,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		924C058D1E84803A0013759B /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				9273FA911C80E0E000EF3DDD /* CameraViewController.swift */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
 		9273FA2F1C7C08B000EF3DDD = {
 			isa = PBXGroup;
 			children = (
@@ -123,8 +131,9 @@
 				9273FA3B1C7C08B000EF3DDD /* AppDelegate.swift */,
 				9273FA9C1C84E60000EF3DDD /* Palette.swift */,
 				9273FA9A1C84BA1A00EF3DDD /* PageViewController.swift */,
-				9273FA911C80E0E000EF3DDD /* CameraViewController.swift */,
 				9273FA931C81144C00EF3DDD /* Palettes */,
+				928EA1E71C87613B00981E0D /* DetailView */,
+				924C058D1E84803A0013759B /* Camera */,
 				9273FA661C7E16AB00EF3DDD /* Inspiration */,
 				9273FA611C7E105300EF3DDD /* SwatchPicker */,
 				9279166A1CA6E6C10065773A /* InterfaceIdiom.swift */,
@@ -168,7 +177,6 @@
 			children = (
 				9273FA6B1C7F7DD500EF3DDD /* PalettesViewController.swift */,
 				9273FA9E1C850DDB00EF3DDD /* PaletteCollectionViewCell.swift */,
-				928EA1E71C87613B00981E0D /* DetailView */,
 				924C058B1E816E780013759B /* PalettesEmptyView.swift */,
 				924C05891E80C78D0013759B /* PalettesEmptyView.xib */,
 			);
