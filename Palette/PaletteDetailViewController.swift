@@ -101,10 +101,18 @@ class PaletteDetailViewController: UIViewController {
     @IBAction private func shareButton(_ sender: AnyObject) {
         guard let imageToShare = headerContainerViewImage else { return }
         
-        let objectsToShare = [imageToShare]
-        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        
-        self.present(activityVC, animated: true, completion: nil)
+        let activityVC = UIActivityViewController(activityItems: [imageToShare], applicationActivities: nil)
+        present(activityVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func getItemSize(from collectionView: UICollectionView) -> CGSize {
+        let flowLayout: UICollectionViewFlowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let availableWidthForCells: CGFloat =
+            collectionView.frame.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumInteritemSpacing
+        return CGSize(
+            width: availableWidthForCells,
+            height: availableWidthForCells + 80
+        )
     }
 }
 
@@ -155,7 +163,11 @@ extension PaletteDetailViewController: UICollectionViewDelegate, UICollectionVie
                 }
             }
             
-            headerContainerViewImage = headerView.containerView.takeSnapshot(headerView.containerView)
+            if let view = headerView.containerView {
+                view.frame.size = getItemSize(from: paletteDetailCollectionView)
+                view.frame.size.height -= 20
+                headerContainerViewImage = view.takeSnapshot(resize: false)
+            }
             
             // add corner radius after creating reference so that shared photos have square edges
             headerView.containerView.layer.cornerRadius = 9
@@ -209,13 +221,6 @@ extension PaletteDetailViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let flowLayout: UICollectionViewFlowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let availableWidthForCells: CGFloat =
-            collectionView.frame.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumInteritemSpacing
-        let itemSize = CGSize(
-            width: availableWidthForCells,
-            height: availableWidthForCells + 80
-        )
-        return itemSize
+        return getItemSize(from: collectionView)
     }
 }
