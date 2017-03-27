@@ -26,7 +26,7 @@ class SwatchPickerView: UIView {
         if let snapshot = snapshot, let context = context {
             return snapshot.getPixelColor(location, context: context)
         } else {
-            self.snapshot = takeSnapshot(photoImageView)
+            self.snapshot = photoImageView.takeSnapshot()
             self.context = self.snapshot!.createBitmap()
             return snapshot!.getPixelColor(location, context: context!)
         }
