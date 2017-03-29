@@ -8,8 +8,29 @@
 
 import UIKit
 
-class PaletteDetailCollectionReusableView: UICollectionReusableView {
+final class PaletteDetailCollectionReusableView: UICollectionReusableView {
+    @IBOutlet private var imageView: UIImageView!
+    @IBOutlet private var stackView: UIStackView!
+    
     @IBOutlet var containerView: UIView!
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var stackView: UIStackView!
+    
+    func setup(with palette: Palette) {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = documentsURL.appendingPathComponent(palette.imageURL)
+        if let data = try? Data(contentsOf: fileURL) {
+            imageView.image = UIImage(data: data)
+        }
+        
+        if stackView.arrangedSubviews.count > 0 {
+            for view in stackView.arrangedSubviews {
+                stackView.removeArrangedSubview(view)
+            }
+        }
+        
+        for color in palette.colors {
+            let view = UIView()
+            view.backgroundColor = color
+            stackView.addArrangedSubview(view)
+        }
+    }
 }

@@ -10,15 +10,18 @@ import UIKit
 
 extension UIColor {
     func hexString() -> String {
-        let hexString = String(format: "%02X%02X%02X",
-            Int((self.cgColor.components?[0])! * 255.0),
-            Int((self.cgColor.components?[1])! * 255.0),
-            Int((self.cgColor.components?[2])! * 255.0))
-        return hexString
+        
+        guard let components = self.cgColor.components,
+        components.count >= 3 else { return "" }
+        let r = Int(components[0] * 255.0)
+        let g = Int(components[1] * 255.0)
+        let b = Int(components[2] * 255.0)
+        
+        return String(format: "#%02X%02X%02X", r, g, b)
     }
     
     
-    func rgbString() -> String? {
+    func rgbString() -> String {
         var fRed : CGFloat = 0
         var fGreen : CGFloat = 0
         var fBlue : CGFloat = 0
@@ -32,8 +35,7 @@ extension UIColor {
             let rgbString = "R:\(iRed) G:\(iGreen) B:\(iBlue)"
             return rgbString
         } else {
-            // Could not extract RGBA components:
-            return nil
+            return ""
         }
     }
 }

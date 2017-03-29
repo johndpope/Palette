@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 final class Palette: NSObject, NSCoding {
     var colors: [UIColor]!
     var imageURL: String!

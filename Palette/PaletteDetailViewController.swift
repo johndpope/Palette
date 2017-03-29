@@ -9,23 +9,23 @@
 import UIKit
 import MBProgressHUD
 
-class PaletteDetailViewController: UIViewController {
+final class PaletteDetailViewController: UIViewController {
     
-    @IBOutlet var paletteDetailCollectionView: UICollectionView!
-    @IBOutlet var headerView: UIView!
+    @IBOutlet fileprivate var paletteDetailCollectionView: UICollectionView!
+    @IBOutlet fileprivate var headerView: UIView!
     
     fileprivate var headerImage: UIImage?
-    fileprivate var headerContainerViewImage: UIImage?
+    fileprivate var snapshot: UIImage?
     
     var palette: Palette!
     var paletteIndex: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpViews()
+        setupView()
     }
     
-    private func setUpViews() {
+    private func setupView() {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileURL = documentsURL.appendingPathComponent(palette.imageURL)
         
@@ -99,7 +99,7 @@ class PaletteDetailViewController: UIViewController {
     }
     
     @IBAction private func shareButton(_ sender: AnyObject) {
-        guard let imageToShare = headerContainerViewImage else { return }
+        guard let imageToShare = snapshot else { return }
         
         let activityVC = UIActivityViewController(activityItems: [imageToShare], applicationActivities: nil)
         present(activityVC, animated: true, completion: nil)
@@ -116,7 +116,8 @@ class PaletteDetailViewController: UIViewController {
     }
 }
 
-extension PaletteDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+
+extension PaletteDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return palette.colors.count
     }
@@ -124,65 +125,43 @@ extension PaletteDetailViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PaletteDetailCollectionViewCell", for: indexPath) as! PaletteDetailCollectionViewCell
         
-        let color = palette.colors[indexPath.row]
-        let hex = color.hexString()
-        let rgb = color.rgbString()
-        cell.colorView.layer.cornerRadius = cell.colorView.frame.size.height / 2.0
-        cell.colorView.backgroundColor = color
-        cell.hexLabel.text = "#\(hex)"
-        cell.RGBLabel.text = rgb
-        
+        cell.setup(with: palette.colors[indexPath.row])
         cell.layer.cornerRadius = cell.frame.size.height / 2.0
         return cell
     }
-    
-    // CollectionView Header & Footer
+}
+
+extension PaletteDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         var reusableView: UICollectionReusableView!
         
         if (kind == UICollectionElementKindSectionHeader) {
-            let headerView = collectionView.dequeueReusableSupplementaryView(
+            let view = collectionView.dequeueReusableSupplementaryView(
                 ofKind: UICollectionElementKindSectionHeader,
                 withReuseIdentifier: "PaletteDetailCollectionReusableView",
                 for: indexPath) as! PaletteDetailCollectionReusableView
+
+            view.setup(with: palette)
             
-            if let image = headerImage {
-                headerView.imageView.image = image
-            }
-            
-            if let colors = palette.colors {
-                for view in headerView.stackView.subviews {
-                    headerView.stackView.removeArrangedSubview(view)
-                }
-                
-                for color in colors {
-                    let view = UIView()
-                    view.backgroundColor = color
-                    headerView.stackView.addArrangedSubview(view)
-                }
-            }
-            
-            if let view = headerView.containerView {
-                view.frame.size = getItemSize(from: paletteDetailCollectionView)
-                view.frame.size.height -= 20
-                headerContainerViewImage = view.takeSnapshot(resize: false)
-            }
+            view.containerView.frame.size = getItemSize(from: paletteDetailCollectionView)
+            view.containerView.frame.size.height -= 20
+            snapshot = view.takeSnapshot(resize: false)
             
             // add corner radius after creating reference so that shared photos have square edges
-            headerView.containerView.layer.cornerRadius = 9
-            headerView.containerView.clipsToBounds = true
-            reusableView = headerView
+            view.containerView.layer.cornerRadius = 9
+            view.containerView.clipsToBounds = true
+            reusableView = view
         }
         
         if (kind == UICollectionElementKindSectionFooter) {
-            let footerView = collectionView.dequeueReusableSupplementaryView(
+            let view = collectionView.dequeueReusableSupplementaryView(
                 ofKind: UICollectionElementKindSectionFooter,
                 withReuseIdentifier: "PaletteDetailCollectionFooterView",
                 for: indexPath) as! PaletteDetailCollectionFooterView
             
-            footerView.containerView.layer.cornerRadius = footerView.containerView.frame.size.height / 2.0
-            reusableView = footerView
+            view.containerView.layer.cornerRadius = view.containerView.frame.size.height / 2.0
+            reusableView = view
         }
         
         reusableView.clipsToBounds = true
@@ -191,11 +170,7 @@ extension PaletteDetailViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let color = palette.colors[indexPath.row]
-        let hex = color.hexString()
-        var colorString = "#\(hex)"
-        if let rgb = color.rgbString() {
-            colorString += " \(rgb)"
-        }
+        let colorString = "\(color.hexString()) \(color.rgbString())"
         
         UIPasteboard.general.string = colorString
         

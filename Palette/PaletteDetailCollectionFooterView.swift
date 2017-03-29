@@ -8,6 +8,6 @@
 
 import UIKit
 
-class PaletteDetailCollectionFooterView: UICollectionReusableView {
+final class PaletteDetailCollectionFooterView: UICollectionReusableView {
     @IBOutlet var containerView: UIView!
 }

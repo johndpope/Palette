@@ -37,6 +37,7 @@
 		9273FAA91C86785000EF3DDD /* UIColor+valueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9273FAA81C86785000EF3DDD /* UIColor+valueExtension.swift */; };
 		9279166B1CA6E6C10065773A /* InterfaceIdiom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9279166A1CA6E6C10065773A /* InterfaceIdiom.swift */; };
 		928EA1E61C8760B500981E0D /* PaletteDetailCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928EA1E51C8760B500981E0D /* PaletteDetailCollectionFooterView.swift */; };
+		92DF9CF31E8C965000C5D1F4 /* PaletteDetailPeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF9CF21E8C965000C5D1F4 /* PaletteDetailPeekViewController.swift */; };
 		9B985148FE40243E3040916B /* Pods_Palette1_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74DE79569DCD3C5BA1A2FAB /* Pods_Palette1_0.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		9273FAA81C86785000EF3DDD /* UIColor+valueExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+valueExtension.swift"; sourceTree = "<group>"; };
 		9279166A1CA6E6C10065773A /* InterfaceIdiom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceIdiom.swift; sourceTree = "<group>"; };
 		928EA1E51C8760B500981E0D /* PaletteDetailCollectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteDetailCollectionFooterView.swift; sourceTree = "<group>"; };
+		92DF9CF21E8C965000C5D1F4 /* PaletteDetailPeekViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteDetailPeekViewController.swift; sourceTree = "<group>"; };
 		E74DE79569DCD3C5BA1A2FAB /* Pods_Palette1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Palette1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				9273FA6B1C7F7DD500EF3DDD /* PalettesViewController.swift */,
+				92DF9CF21E8C965000C5D1F4 /* PaletteDetailPeekViewController.swift */,
 				9273FA9E1C850DDB00EF3DDD /* PaletteCollectionViewCell.swift */,
 				924C058B1E816E780013759B /* PalettesEmptyView.swift */,
 				924C05891E80C78D0013759B /* PalettesEmptyView.xib */,
@@ -346,6 +349,7 @@
 				9279166B1CA6E6C10065773A /* InterfaceIdiom.swift in Sources */,
 				9273FAA91C86785000EF3DDD /* UIColor+valueExtension.swift in Sources */,
 				9273FA9B1C84BA1A00EF3DDD /* PageViewController.swift in Sources */,
+				92DF9CF31E8C965000C5D1F4 /* PaletteDetailPeekViewController.swift in Sources */,
 				9273FA9F1C850DDB00EF3DDD /* PaletteCollectionViewCell.swift in Sources */,
 				9273FA9D1C84E60000EF3DDD /* Palette.swift in Sources */,
 				9273FA6E1C7F88DD00EF3DDD /* BackgroundImage.swift in Sources */,

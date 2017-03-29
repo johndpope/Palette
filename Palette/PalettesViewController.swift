@@ -9,8 +9,8 @@
 import UIKit
 import DZNEmptyDataSet
 
-class PalettesViewController: UIViewController {
-    fileprivate var arrayOfPalettes: Array<Palette> = []
+final class PalettesViewController: UIViewController {
+    fileprivate var palettes: Array<Palette> = []
     @IBOutlet fileprivate var paletteCollectionView: UICollectionView!
     @IBOutlet private var headerView: UIView!
     
@@ -28,6 +28,10 @@ class PalettesViewController: UIViewController {
         paletteCollectionView.emptyDataSetSource = self
         paletteCollectionView.emptyDataSetDelegate = self
         setupView()
+        
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: view)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +40,7 @@ class PalettesViewController: UIViewController {
         paletteCollectionView.reloadData()
     }
     
-    func setupView () {
+    private func setupView () {
         emptyView.cameraButtonAction = {
             self.showCameraView?()
         }
@@ -52,29 +56,33 @@ class PalettesViewController: UIViewController {
     }
     
     private func setUpPalettes () {
-        arrayOfPalettes = []
+        palettes = []
         let defaults = UserDefaults.standard
         if let encodedArray = defaults.object(forKey: "palettesArray") as? [Data] {
             for data in encodedArray {
                 if let palette: Palette = NSKeyedUnarchiver.unarchiveObject(with: data) as? Palette {
-                    arrayOfPalettes.append(palette)
+                    palettes.append(palette)
                 }
             }
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowPaletteDetail" {
+        if segue.identifier == "ShowPaletteDetail" || segue.identifier == "ShowPaletteDetailPreview" {
             if let dvc = segue.destination as? PaletteDetailViewController {
-                let cell = sender as! PaletteCollectionViewCell
-                dvc.palette = cell.palette
-                dvc.paletteIndex = paletteCollectionView.indexPath(for: cell)!.row
+                guard let cell = sender as? PaletteCollectionViewCell,
+                    let indexPath = paletteCollectionView.indexPath(for: cell) else {
+                        return
+                }
+                
+                dvc.palette = palettes[indexPath.row]
+                dvc.paletteIndex = indexPath.row
             }
         }
     }
     
     func scrollToTop() {
-        guard arrayOfPalettes.count > 0 else { return }
+        guard palettes.count > 0 else { return }
         self.paletteCollectionView.scrollToItem(
             at: IndexPath(row: 0, section: 0),
             at: UICollectionViewScrollPosition.centeredVertically,
@@ -85,19 +93,13 @@ class PalettesViewController: UIViewController {
 
 extension PalettesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayOfPalettes.count
+        return palettes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PaletteCell", for: indexPath) as! PaletteCollectionViewCell
-        let palette = arrayOfPalettes[indexPath.row]
-        
-        cell.palette = palette
-        cell.populatePalette()
-        
         cell.layer.cornerRadius = 9
-        cell.containerView.clipsToBounds = true
-        cell.containerView.layer.cornerRadius = 4
+        cell.setup(with: palettes[indexPath.row])
         return cell
     }
 }
@@ -123,4 +125,26 @@ extension PalettesViewController: DZNEmptyDataSetSource {
 
 extension PalettesViewController: DZNEmptyDataSetDelegate {
     
+}
+
+extension PalettesViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = paletteCollectionView.indexPathForItem(at: paletteCollectionView.convert(location, from: view)),
+            let cell = paletteCollectionView.cellForItem(at: indexPath),
+            let viewController = storyboard?.instantiateViewController(withIdentifier: "PaletteDetailPeekViewController") as? PaletteDetailPeekViewController else { return nil }
+        
+        viewController.palette =  palettes[indexPath.row]
+        viewController.preferredContentSize = CGSize(width: 355, height: 405)
+        previewingContext.sourceRect = paletteCollectionView.convert(cell.frame, to: paletteCollectionView.superview!)
+        
+        return viewController
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        guard let viewController = viewControllerToCommit as? PaletteDetailPeekViewController,
+            let detailViewController = storyboard?.instantiateViewController(withIdentifier: "PaletteDetailViewController") as? PaletteDetailViewController else { return }
+        detailViewController.palette = viewController.palette
+        
+        show(detailViewController, sender: self)
+    }
 }
