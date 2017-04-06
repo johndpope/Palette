@@ -134,6 +134,12 @@ extension PalettesViewController: UIViewControllerPreviewingDelegate {
             let viewController = storyboard?.instantiateViewController(withIdentifier: "PaletteDetailPeekViewController") as? PaletteDetailPeekViewController else { return nil }
         
         viewController.palette =  palettes[indexPath.row]
+        viewController.shareAction = {
+            guard let snapshot = self.palettes[indexPath.row].shareableImage() else { return }
+            let activityVC = UIActivityViewController(activityItems: [snapshot], applicationActivities: nil)
+            self.present(activityVC, animated: true, completion: nil)
+        }
+        
         viewController.preferredContentSize = CGSize(width: 355, height: 405)
         previewingContext.sourceRect = paletteCollectionView.convert(cell.frame, to: paletteCollectionView.superview!)
         

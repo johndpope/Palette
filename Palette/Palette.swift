@@ -32,3 +32,22 @@ final class Palette: NSObject, NSCoding {
         aCoder.encode(self.imageURL, forKey: "imageURL")
     }
 }
+
+
+extension Palette {
+    func shareableImage() -> UIImage? {
+        guard let view = PaletteView.instanceFromNib() as? PaletteView else { return nil }
+        view.frame = CGRect(x: 0, y: 0, width: 355, height: 415)
+        view.update(with: self)
+        
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, view.isOpaque, 0.0)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+}

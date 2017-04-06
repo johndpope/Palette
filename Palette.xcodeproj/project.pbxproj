@@ -37,6 +37,8 @@
 		9273FAA91C86785000EF3DDD /* UIColor+valueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9273FAA81C86785000EF3DDD /* UIColor+valueExtension.swift */; };
 		9279166B1CA6E6C10065773A /* InterfaceIdiom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9279166A1CA6E6C10065773A /* InterfaceIdiom.swift */; };
 		928EA1E61C8760B500981E0D /* PaletteDetailCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928EA1E51C8760B500981E0D /* PaletteDetailCollectionFooterView.swift */; };
+		92B79B061E96C83800FEA387 /* PaletteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B79B051E96C83800FEA387 /* PaletteView.xib */; };
+		92B79B081E96C8E600FEA387 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B79B071E96C8E600FEA387 /* PaletteView.swift */; };
 		92DF9CF31E8C965000C5D1F4 /* PaletteDetailPeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF9CF21E8C965000C5D1F4 /* PaletteDetailPeekViewController.swift */; };
 		9B985148FE40243E3040916B /* Pods_Palette1_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74DE79569DCD3C5BA1A2FAB /* Pods_Palette1_0.framework */; };
 /* End PBXBuildFile section */
@@ -76,6 +78,8 @@
 		9273FAA81C86785000EF3DDD /* UIColor+valueExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+valueExtension.swift"; sourceTree = "<group>"; };
 		9279166A1CA6E6C10065773A /* InterfaceIdiom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceIdiom.swift; sourceTree = "<group>"; };
 		928EA1E51C8760B500981E0D /* PaletteDetailCollectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteDetailCollectionFooterView.swift; sourceTree = "<group>"; };
+		92B79B051E96C83800FEA387 /* PaletteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaletteView.xib; sourceTree = "<group>"; };
+		92B79B071E96C8E600FEA387 /* PaletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
 		92DF9CF21E8C965000C5D1F4 /* PaletteDetailPeekViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteDetailPeekViewController.swift; sourceTree = "<group>"; };
 		E74DE79569DCD3C5BA1A2FAB /* Pods_Palette1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Palette1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -133,6 +137,8 @@
 				9273FA3B1C7C08B000EF3DDD /* AppDelegate.swift */,
 				9273FA9C1C84E60000EF3DDD /* Palette.swift */,
 				9273FA9A1C84BA1A00EF3DDD /* PageViewController.swift */,
+				92B79B071E96C8E600FEA387 /* PaletteView.swift */,
+				92B79B051E96C83800FEA387 /* PaletteView.xib */,
 				9273FA931C81144C00EF3DDD /* Palettes */,
 				928EA1E71C87613B00981E0D /* DetailView */,
 				924C058D1E84803A0013759B /* Camera */,
@@ -270,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92B79B061E96C83800FEA387 /* PaletteView.xib in Resources */,
 				924C058A1E80C78D0013759B /* PalettesEmptyView.xib in Resources */,
 				9273FA461C7C08B000EF3DDD /* LaunchScreen.storyboard in Resources */,
 				9273FA431C7C08B000EF3DDD /* Assets.xcassets in Resources */,
@@ -337,6 +344,7 @@
 				9200F0461E78DE8D00C10EBD /* InspirationEmptyView.swift in Sources */,
 				9273FA631C7E109100EF3DDD /* InspirationViewController.swift in Sources */,
 				926004481E664A260086F20F /* YPMagnifyingGlass.swift in Sources */,
+				92B79B081E96C8E600FEA387 /* PaletteView.swift in Sources */,
 				926004491E664A260086F20F /* YPMagnifyingView.swift in Sources */,
 				9273FA3E1C7C08B000EF3DDD /* SwatchPickerViewController.swift in Sources */,
 				924C058C1E816E780013759B /* PalettesEmptyView.swift in Sources */,
