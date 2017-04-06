@@ -8,9 +8,9 @@
 
 import UIKit
 
-class PalettesEmptyView: UIView {
+final class PalettesEmptyView: UIView {
 
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet private weak var containerView: UIView!
     
     var cameraButtonAction: (() -> ())?
     var inspirationButtonAction: (() -> ())?
@@ -20,15 +20,14 @@ class PalettesEmptyView: UIView {
         containerView.layer.cornerRadius = 9
     }
 
-    @IBAction func didTapCameraButton() {
+    @IBAction private func didTapCameraButton() {
         cameraButtonAction?()
     }
     
     
-    @IBAction func didTapInspirationButton() {
+    @IBAction private func didTapInspirationButton() {
         inspirationButtonAction?()
     }
-    
     
     class func instanceFromNib() -> UIView? {
         let nib = UINib(nibName: "PalettesEmptyView", bundle: nil).instantiate(withOwner: nil, options: nil)

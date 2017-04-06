@@ -1,20 +1,23 @@
 //
-//  PaletteDetailCollectionReusableView.swift
-//  Palette1.0
+//  PaletteView.swift
+//  Palette
 //
-//  Created by Alexander Mathers on 2016-03-01.
-//  Copyright © 2016 Malecks. All rights reserved.
+//  Created by Alex Mathers on 2017-04-06.
+//  Copyright © 2017 Malecks. All rights reserved.
 //
 
 import UIKit
 
-final class PaletteDetailCollectionReusableView: UICollectionReusableView {
-    @IBOutlet private var imageView: UIImageView!
-    @IBOutlet private var stackView: UIStackView!
+final class PaletteView: UIView {
     
-    @IBOutlet var containerView: UIView!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var stackView: UIStackView!
     
-    func setup(with palette: Palette) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    func update(with palette: Palette) {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileURL = documentsURL.appendingPathComponent(palette.imageURL)
         if let data = try? Data(contentsOf: fileURL) {
@@ -32,5 +35,15 @@ final class PaletteDetailCollectionReusableView: UICollectionReusableView {
             view.backgroundColor = color
             stackView.addArrangedSubview(view)
         }
+    }
+    
+    class func instanceFromNib() -> UIView? {
+        let nib = UINib(nibName: "PaletteView", bundle: nil).instantiate(withOwner: nil, options: nil)
+        for view in nib {
+            if let view = view as? PaletteView {
+                return view
+            }
+        }
+        return nil
     }
 }
