@@ -13,6 +13,7 @@ final class PaletteDetailPeekViewController: UIViewController {
     
     var palette: Palette?
     var shareAction: (() -> ())?
+    var deleteAction: (() -> ())?
     
     private lazy var paletteView: PaletteView = {
         let view = PaletteView.instanceFromNib()
@@ -26,7 +27,7 @@ final class PaletteDetailPeekViewController: UIViewController {
         })
         
         let deleteAction = UIPreviewAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { (previewAction, viewController) -> Void in
-            
+            self.deleteAction?()
         })
         
         return [shareAction, deleteAction]

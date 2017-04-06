@@ -89,6 +89,26 @@ final class PalettesViewController: UIViewController {
             animated: true
         )
     }
+    
+    fileprivate func deletePalette(palette: Palette, at index: Int) {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = documentsURL.appendingPathComponent(palette.imageURL)
+        
+        do {
+            try FileManager.default.removeItem(at: fileURL)
+        } catch {
+            print(error)
+        }
+        
+        // delete palette object from array
+        let defaults = UserDefaults.standard
+        if var encodedArray = defaults.object(forKey: "palettesArray") as? [Data] {
+            encodedArray.remove(at: index)
+            defaults.set(encodedArray, forKey: "palettesArray")
+        }
+        
+        defaults.synchronize()
+    }
 }
 
 extension PalettesViewController: UICollectionViewDataSource {
@@ -134,10 +154,37 @@ extension PalettesViewController: UIViewControllerPreviewingDelegate {
             let viewController = storyboard?.instantiateViewController(withIdentifier: "PaletteDetailPeekViewController") as? PaletteDetailPeekViewController else { return nil }
         
         viewController.palette =  palettes[indexPath.row]
+        
         viewController.shareAction = {
             guard let snapshot = self.palettes[indexPath.row].shareableImage() else { return }
             let activityVC = UIActivityViewController(activityItems: [snapshot], applicationActivities: nil)
             self.present(activityVC, animated: true, completion: nil)
+        }
+        
+        viewController.deleteAction = {
+            let alertController = UIAlertController(
+                title: "Delete Palette",
+                message: "Are you sure you want to delete this pretty palette? You can't undo this.",
+                preferredStyle: .alert
+            )
+            
+            alertController.addAction(UIAlertAction(
+                title: "Cancel",
+                style: .cancel,
+                handler: nil
+            ))
+            
+            alertController.addAction(UIAlertAction(
+                title: "Delete",
+                style: .destructive,
+                handler: { action in
+                    self.deletePalette(palette: self.palettes[indexPath.row], at: indexPath.row)
+                    self.palettes.remove(at: indexPath.row)
+                    self.paletteCollectionView.deleteItems(at: [indexPath])
+                    self.dismiss(animated: true, completion: nil)
+            }))
+            
+            self.present(alertController, animated: true, completion: nil)
         }
         
         viewController.preferredContentSize = CGSize(width: 355, height: 405)
