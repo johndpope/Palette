@@ -180,6 +180,10 @@ extension PalettesViewController: UIViewControllerPreviewingDelegate {
                     self.deletePalette(palette: self.palettes[indexPath.row], at: indexPath.row)
                     self.palettes.remove(at: indexPath.row)
                     self.paletteCollectionView.deleteItems(at: [indexPath])
+                    if self.palettes.count == 0 {
+                        self.paletteCollectionView.reloadData()
+                    }
+                    
                     self.dismiss(animated: true, completion: nil)
             }))
             
