@@ -13,10 +13,7 @@ final class PaletteDetailViewController: UIViewController {
     
     @IBOutlet fileprivate var paletteDetailCollectionView: UICollectionView!
     @IBOutlet fileprivate var headerView: UIView!
-    
-    fileprivate var headerImage: UIImage?
-    fileprivate var snapshot: UIImage?
-    
+        
     var palette: Palette!
     var paletteIndex: Int!
     
@@ -26,13 +23,6 @@ final class PaletteDetailViewController: UIViewController {
     }
     
     private func setupView() {
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileURL = documentsURL.appendingPathComponent(palette.imageURL)
-        
-        if let data = try? Data(contentsOf: fileURL) {
-            headerImage = UIImage(data: data)
-        }
-        
         if let colors = palette.colors {
             if colors.count > 0 {
                 let randomNum: Int = Int(arc4random_uniform(UInt32(colors.count)))
@@ -44,7 +34,6 @@ final class PaletteDetailViewController: UIViewController {
             }
         }
         
-        headerView.layer.masksToBounds = false
         headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
         headerView.layer.shadowRadius = 0
         headerView.layer.shadowOpacity = 0.1
@@ -99,20 +88,10 @@ final class PaletteDetailViewController: UIViewController {
     }
     
     @IBAction private func shareButton(_ sender: AnyObject) {
-        guard let imageToShare = snapshot else { return }
+        guard let snapshot = palette.shareableImage() else { return }
         
-        let activityVC = UIActivityViewController(activityItems: [imageToShare], applicationActivities: nil)
+        let activityVC = UIActivityViewController(activityItems: [snapshot], applicationActivities: nil)
         present(activityVC, animated: true, completion: nil)
-    }
-    
-    fileprivate func getItemSize(from collectionView: UICollectionView) -> CGSize {
-        let flowLayout: UICollectionViewFlowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let availableWidthForCells: CGFloat =
-            collectionView.frame.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumInteritemSpacing
-        return CGSize(
-            width: availableWidthForCells,
-            height: availableWidthForCells + 80
-        )
     }
 }
 
@@ -143,14 +122,7 @@ extension PaletteDetailViewController: UICollectionViewDelegate {
                 for: indexPath) as! PaletteDetailCollectionReusableView
 
             view.setup(with: palette)
-            
-            view.containerView.frame.size = getItemSize(from: paletteDetailCollectionView)
-            view.containerView.frame.size.height -= 20
-            snapshot = view.takeSnapshot(resize: false)
-            
-            // add corner radius after creating reference so that shared photos have square edges
-            view.containerView.layer.cornerRadius = 9
-            view.containerView.clipsToBounds = true
+
             reusableView = view
         }
         
@@ -161,10 +133,10 @@ extension PaletteDetailViewController: UICollectionViewDelegate {
                 for: indexPath) as! PaletteDetailCollectionFooterView
             
             view.containerView.layer.cornerRadius = view.containerView.frame.size.height / 2.0
+            
             reusableView = view
         }
         
-        reusableView.clipsToBounds = true
         return reusableView
     }
     
@@ -196,6 +168,12 @@ extension PaletteDetailViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return getItemSize(from: collectionView)
+        let flowLayout: UICollectionViewFlowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let availableWidthForCells: CGFloat =
+            collectionView.frame.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumInteritemSpacing
+        return CGSize(
+            width: availableWidthForCells,
+            height: availableWidthForCells + 80
+        )
     }
 }
