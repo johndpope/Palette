@@ -41,7 +41,6 @@ class CameraViewController: UIViewController {
     }
     
     private func setupView() {
-        headerView.layer.masksToBounds = false
         headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
         headerView.layer.shadowRadius = 0
         headerView.layer.shadowOpacity = 0.1

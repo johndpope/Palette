@@ -97,32 +97,7 @@
                                     <subviews>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoP-8y-YRF">
                                             <rect key="frame" x="20" y="20" width="335" height="385"/>
-                                            <subviews>
-                                                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Aqs-HB-3Lb">
-                                                    <rect key="frame" x="0.0" y="335" width="335" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="eLq-tI-vix"/>
-                                                    </constraints>
-                                                </stackView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hIE-6l-tXf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="335"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="hIE-6l-tXf" secondAttribute="height" multiplier="1:1" id="SQu-yt-Zc2"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="hIE-6l-tXf" firstAttribute="leading" secondItem="AoP-8y-YRF" secondAttribute="leading" id="3It-7C-6bR"/>
-                                                <constraint firstItem="hIE-6l-tXf" firstAttribute="width" secondItem="AoP-8y-YRF" secondAttribute="width" id="6Vs-JP-gBz"/>
-                                                <constraint firstItem="Aqs-HB-3Lb" firstAttribute="top" secondItem="hIE-6l-tXf" secondAttribute="bottom" id="B2x-2C-MVH"/>
-                                                <constraint firstAttribute="trailing" secondItem="hIE-6l-tXf" secondAttribute="trailing" id="Urn-Yt-MtD"/>
-                                                <constraint firstItem="Aqs-HB-3Lb" firstAttribute="leading" secondItem="AoP-8y-YRF" secondAttribute="leading" id="kx1-WM-Q6N"/>
-                                                <constraint firstAttribute="trailing" secondItem="Aqs-HB-3Lb" secondAttribute="trailing" id="oLw-6h-83g"/>
-                                                <constraint firstItem="Aqs-HB-3Lb" firstAttribute="width" secondItem="AoP-8y-YRF" secondAttribute="width" id="pe6-jd-XpK"/>
-                                                <constraint firstItem="hIE-6l-tXf" firstAttribute="top" secondItem="AoP-8y-YRF" secondAttribute="top" id="sFT-fg-9cd"/>
-                                                <constraint firstAttribute="bottom" secondItem="Aqs-HB-3Lb" secondAttribute="bottom" id="tOH-w5-qwc"/>
-                                            </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -134,8 +109,6 @@
                                     <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                     <connections>
                                         <outlet property="containerView" destination="AoP-8y-YRF" id="sHV-od-X0v"/>
-                                        <outlet property="imageView" destination="hIE-6l-tXf" id="3om-7l-ayi"/>
-                                        <outlet property="stackView" destination="Aqs-HB-3Lb" id="V1R-o2-sqJ"/>
                                     </connections>
                                 </collectionReusableView>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PaletteDetailCollectionFooterView" id="q0f-96-tqb" customClass="PaletteDetailCollectionFooterView" customModule="Palette" customModuleProvider="target">
@@ -507,7 +480,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z69-DV-XSE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
-                                    <pageControl opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" currentPage="1" translatesAutoresizingMaskIntoConstraints="NO" id="uiE-kF-wzx">
+                                    <pageControl opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" currentPage="1" translatesAutoresizingMaskIntoConstraints="NO" id="uiE-kF-wzx">
                                         <rect key="frame" x="168" y="23" width="39" height="37"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="pageIndicatorTintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -625,7 +598,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7i-AD-Kcp">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
-                                    <pageControl opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Dji-m2-dqG">
+                                    <pageControl opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Dji-m2-dqG">
                                         <rect key="frame" x="168" y="23" width="39" height="37"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="pageIndicatorTintColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -733,7 +706,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89Y-kL-b49">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
-                                    <pageControl opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" currentPage="2" translatesAutoresizingMaskIntoConstraints="NO" id="2Nf-Ej-6Cl">
+                                    <pageControl opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" currentPage="2" translatesAutoresizingMaskIntoConstraints="NO" id="2Nf-Ej-6Cl">
                                         <rect key="frame" x="168" y="23" width="39" height="37"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="pageIndicatorTintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

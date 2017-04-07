@@ -49,7 +49,6 @@ final class PalettesViewController: UIViewController {
             self.showInspirationView?()
         }
         
-        headerView.layer.masksToBounds = false
         headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
         headerView.layer.shadowRadius = 0
         headerView.layer.shadowOpacity = 0.1
@@ -181,6 +180,10 @@ extension PalettesViewController: UIViewControllerPreviewingDelegate {
                     self.deletePalette(palette: self.palettes[indexPath.row], at: indexPath.row)
                     self.palettes.remove(at: indexPath.row)
                     self.paletteCollectionView.deleteItems(at: [indexPath])
+                    if self.palettes.count == 0 {
+                        self.paletteCollectionView.reloadData()
+                    }
+                    
                     self.dismiss(animated: true, completion: nil)
             }))
             
