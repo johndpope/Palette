@@ -9,28 +9,33 @@
 import UIKit
 
 final class PaletteDetailCollectionReusableView: UICollectionReusableView {
-    @IBOutlet private var imageView: UIImageView!
-    @IBOutlet private var stackView: UIStackView!
     
-    @IBOutlet var containerView: UIView!
+    @IBOutlet private weak var containerView: UIView!
+    private var paletteView: PaletteView?
     
     func setup(with palette: Palette) {
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileURL = documentsURL.appendingPathComponent(palette.imageURL)
-        if let data = try? Data(contentsOf: fileURL) {
-            imageView.image = UIImage(data: data)
-        }
+        containerView.layer.cornerRadius = 9
+        containerView.clipsToBounds = true
         
-        if stackView.arrangedSubviews.count > 0 {
-            for view in stackView.arrangedSubviews {
-                stackView.removeArrangedSubview(view)
-            }
-        }
+        paletteView = PaletteView.instanceFromNib() as? PaletteView
+        guard let view = paletteView else { return }
+        view.frame = containerView.frame
+        view.translatesAutoresizingMaskIntoConstraints = false
         
-        for color in palette.colors {
-            let view = UIView()
-            view.backgroundColor = color
-            stackView.addArrangedSubview(view)
-        }
+        containerView.addSubview(view)
+        
+        containerView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|[paletteView]|",
+            options: NSLayoutFormatOptions(),
+            metrics: nil,
+            views: ["paletteView" : view]))
+        
+        containerView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|[paletteView]|",
+            options: NSLayoutFormatOptions(),
+            metrics: nil,
+            views: ["paletteView" : view]
+        ))
+        view.update(with: palette)
     }
 }
