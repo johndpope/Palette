@@ -14,8 +14,8 @@ final class PaletteDetailViewController: UIViewController {
     @IBOutlet fileprivate var paletteDetailCollectionView: UICollectionView!
     @IBOutlet fileprivate var headerView: UIView!
         
-    var palette: Palette!
-    var paletteIndex: Int!
+    var palette: Palette?
+    var paletteIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +23,14 @@ final class PaletteDetailViewController: UIViewController {
     }
     
     private func setupView() {
-        if let colors = palette.colors {
-            if colors.count > 0 {
-                let randomNum: Int = Int(arc4random_uniform(UInt32(colors.count)))
-                let randomColour = colors[randomNum]
-                let backgroundView = UIImageView(frame: view.frame)
-                let backgroundImage = UIImage().createBackgroundImageWithColor(randomColour)
-                backgroundView.image = backgroundImage
-                view.insertSubview(backgroundView, at: 0)
-            }
+        guard let palette = palette, let colors = palette.colors else { return }
+        if colors.count > 0 {
+            let randomNum: Int = Int(arc4random_uniform(UInt32(colors.count)))
+            let randomColour = colors[randomNum]
+            let backgroundView = UIImageView(frame: view.frame)
+            let backgroundImage = UIImage().createBackgroundImageWithColor(randomColour)
+            backgroundView.image = backgroundImage
+            view.insertSubview(backgroundView, at: 0)
         }
         
         headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
@@ -64,6 +63,7 @@ final class PaletteDetailViewController: UIViewController {
     }
     
     private func deletePalette() {
+        guard let palette = palette, let index = paletteIndex else { return }
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileURL = documentsURL.appendingPathComponent(palette.imageURL)
         
@@ -76,7 +76,7 @@ final class PaletteDetailViewController: UIViewController {
         // delete palette object from array
         let defaults = UserDefaults.standard
         if var encodedArray = defaults.object(forKey: "palettesArray") as? [Data] {
-            encodedArray.remove(at: paletteIndex)
+            encodedArray.remove(at: index)
             defaults.set(encodedArray, forKey: "palettesArray")
         }
         
@@ -88,7 +88,7 @@ final class PaletteDetailViewController: UIViewController {
     }
     
     @IBAction private func shareButton(_ sender: AnyObject) {
-        guard let snapshot = palette.shareableImage() else { return }
+        guard let snapshot = palette?.shareableImage() else { return }
         
         let activityVC = UIActivityViewController(activityItems: [snapshot], applicationActivities: nil)
         present(activityVC, animated: true, completion: nil)
@@ -98,13 +98,16 @@ final class PaletteDetailViewController: UIViewController {
 
 extension PaletteDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let palette = palette else { return 0 }
         return palette.colors.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PaletteDetailCollectionViewCell", for: indexPath) as! PaletteDetailCollectionViewCell
         
-        cell.setup(with: palette.colors[indexPath.row])
+        if let palette = palette {
+            cell.setup(with: palette.colors[indexPath.row])
+        }
         cell.layer.cornerRadius = cell.frame.size.height / 2.0
         return cell
     }
@@ -120,9 +123,10 @@ extension PaletteDetailViewController: UICollectionViewDelegate {
                 ofKind: UICollectionElementKindSectionHeader,
                 withReuseIdentifier: "PaletteDetailCollectionReusableView",
                 for: indexPath) as! PaletteDetailCollectionReusableView
-
-            view.setup(with: palette)
-
+            
+            if let palette = palette {
+                view.setup(with: palette)
+            }
             reusableView = view
         }
         
@@ -133,7 +137,6 @@ extension PaletteDetailViewController: UICollectionViewDelegate {
                 for: indexPath) as! PaletteDetailCollectionFooterView
             
             view.containerView.layer.cornerRadius = view.containerView.frame.size.height / 2.0
-            
             reusableView = view
         }
         
@@ -141,6 +144,7 @@ extension PaletteDetailViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let palette = palette else { return }
         let color = palette.colors[indexPath.row]
         let colorString = "\(color.hexString()) \(color.rgbString())"
         

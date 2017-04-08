@@ -12,6 +12,8 @@ final class PaletteDetailPeekViewController: UIViewController {
     @IBOutlet private weak var containerView: UIView!
     
     var palette: Palette?
+    var paletteIndex: Int?
+    
     var shareAction: (() -> ())?
     var deleteAction: (() -> ())?
     

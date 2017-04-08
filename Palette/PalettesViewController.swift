@@ -152,7 +152,8 @@ extension PalettesViewController: UIViewControllerPreviewingDelegate {
             let cell = paletteCollectionView.cellForItem(at: indexPath),
             let viewController = storyboard?.instantiateViewController(withIdentifier: "PaletteDetailPeekViewController") as? PaletteDetailPeekViewController else { return nil }
         
-        viewController.palette =  palettes[indexPath.row]
+        viewController.palette = palettes[indexPath.row]
+        viewController.paletteIndex = indexPath.row
         
         viewController.shareAction = {
             guard let snapshot = self.palettes[indexPath.row].shareableImage() else { return }
@@ -200,6 +201,7 @@ extension PalettesViewController: UIViewControllerPreviewingDelegate {
         guard let viewController = viewControllerToCommit as? PaletteDetailPeekViewController,
             let detailViewController = storyboard?.instantiateViewController(withIdentifier: "PaletteDetailViewController") as? PaletteDetailViewController else { return }
         detailViewController.palette = viewController.palette
+        detailViewController.paletteIndex = viewController.paletteIndex
         
         show(detailViewController, sender: self)
     }
