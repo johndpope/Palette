@@ -25,6 +25,10 @@ class InspirationViewController: UIViewController {
         return view as! InspirationEmptyView
     }()
     
+    fileprivate lazy var refreshControl: UIRefreshControl = {
+        return UIRefreshControl()
+    }()
+    
     @IBOutlet private var headerView: UIView!
     @IBOutlet private var collectionView: UICollectionView!
     
@@ -64,12 +68,22 @@ class InspirationViewController: UIViewController {
         progressHUD.minShowTime = 0.25
         progressHUD.isUserInteractionEnabled = true
         view.addSubview(progressHUD)
+        
+        if #available(iOS 10.0, *) {
+            collectionView.refreshControl = refreshControl
+        } else {
+            collectionView.addSubview(refreshControl)
+        }
+        
+        refreshControl.addTarget(self, action: #selector(self.loadPhotos(append:)), for: .valueChanged)
     }
     
-    fileprivate func loadPhotos(append: Bool = false) {
+    @objc fileprivate func loadPhotos(append: Bool = false) {
         guard !isLoading, flikrAPIManager.pageNumber < flikrAPIManager.maxPage else { return }
         isLoading = true
-        progressHUD.show(animated: true)
+        if !refreshControl.isRefreshing {
+            progressHUD.show(animated: true)
+        }
         flikrAPIManager.pageNumber = append ? flikrAPIManager.pageNumber + 1 : 1
         
         flikrAPIManager.retrievePhotos { photos, error in
@@ -83,6 +97,7 @@ class InspirationViewController: UIViewController {
                         repeats: false
                     )
                     self.progressHUD.hide(animated: true)
+                    self.refreshControl.endRefreshing()
                 }
                 return
             }
@@ -92,6 +107,7 @@ class InspirationViewController: UIViewController {
                 self.collectionView.reloadData()
                 self.isLoading = false
                 self.progressHUD.hide(animated: true)
+                self.refreshControl.endRefreshing()
             }
         }
     }

@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchStoryIcon" translatesAutoresizingMaskIntoConstraints="NO" id="iup-nj-0Jm">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_launch" translatesAutoresizingMaskIntoConstraints="NO" id="iup-nj-0Jm">
                                 <rect key="frame" x="62" y="209" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="CH5-SN-1Vp"/>
@@ -42,6 +42,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchStoryIcon" width="250" height="250"/>
+        <image name="icon_launch" width="250" height="250"/>
     </resources>
 </document>
