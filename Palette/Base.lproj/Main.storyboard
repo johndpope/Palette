@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LNk-Ve-mj5">
-                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="wop-8l-rNz">
@@ -153,56 +153,16 @@
                                     <outlet property="delegate" destination="3AH-J5-fNk" id="Xaw-nZ-shw"/>
                                 </connections>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NpW-ht-uiR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhZ-4Y-XFr">
-                                        <rect key="frame" x="20" y="20" width="41" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="pFC-Xz-xvh"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <state key="normal" title="Back"/>
-                                        <connections>
-                                            <action selector="backButton:" destination="3AH-J5-fNk" eventType="touchUpInside" id="Gwm-jT-nwO"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUE-CG-bMU">
-                                        <rect key="frame" x="325" y="20" width="40" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="Cce-8d-DlN"/>
-                                            <constraint firstAttribute="height" constant="40" id="HhO-QD-Ihp"/>
-                                        </constraints>
-                                        <state key="normal" image="ic_open_in_new"/>
-                                        <connections>
-                                            <action selector="shareButton:" destination="3AH-J5-fNk" eventType="touchUpInside" id="ZjB-Uc-FVA"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="WUE-CG-bMU" secondAttribute="trailing" constant="10" id="233-WW-3vj"/>
-                                    <constraint firstAttribute="height" constant="60" id="5ME-Aa-y7J"/>
-                                    <constraint firstItem="ZhZ-4Y-XFr" firstAttribute="leading" secondItem="NpW-ht-uiR" secondAttribute="leading" constant="20" id="hSe-a8-P7Q"/>
-                                    <constraint firstAttribute="bottom" secondItem="WUE-CG-bMU" secondAttribute="bottom" id="pWJ-uM-bc0"/>
-                                    <constraint firstAttribute="bottom" secondItem="ZhZ-4Y-XFr" secondAttribute="bottom" id="qpv-n2-Slo"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="NpW-ht-uiR" firstAttribute="top" secondItem="Wl5-xQ-Qrd" secondAttribute="top" id="1Yo-uC-C1W"/>
                             <constraint firstItem="Cv3-W6-1TO" firstAttribute="top" secondItem="LNk-Ve-mj5" secondAttribute="bottom" id="2Yo-V3-r05"/>
-                            <constraint firstAttribute="trailing" secondItem="NpW-ht-uiR" secondAttribute="trailing" id="7X3-p0-vyZ"/>
                             <constraint firstAttribute="trailing" secondItem="LNk-Ve-mj5" secondAttribute="trailing" id="EhY-jP-BJn"/>
-                            <constraint firstItem="LNk-Ve-mj5" firstAttribute="top" secondItem="NpW-ht-uiR" secondAttribute="bottom" id="fwD-I6-HWm"/>
-                            <constraint firstItem="NpW-ht-uiR" firstAttribute="leading" secondItem="Wl5-xQ-Qrd" secondAttribute="leading" id="oyS-Gr-F17"/>
+                            <constraint firstItem="LNk-Ve-mj5" firstAttribute="top" secondItem="P2h-0b-MKI" secondAttribute="bottom" id="UsT-Pd-22S"/>
                             <constraint firstItem="LNk-Ve-mj5" firstAttribute="leading" secondItem="Wl5-xQ-Qrd" secondAttribute="leading" id="rOY-rd-H2c"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="headerView" destination="NpW-ht-uiR" id="oC3-4x-XqZ"/>
                         <outlet property="paletteDetailCollectionView" destination="LNk-Ve-mj5" id="AFK-4G-uSm"/>
                     </connections>
                 </viewController>
@@ -254,15 +214,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-BG-kq4">
-                                <rect key="frame" x="0.0" y="60" width="414" height="676"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </navigationBar>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pL1-em-sYb">
-                                <rect key="frame" x="10" y="80" width="355" height="513"/>
+                                <rect key="frame" x="10" y="80" width="355" height="525"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gm-Jc-Gn0" customClass="SwatchPickerView" customModule="Palette" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="355"/>
@@ -301,18 +257,18 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PhW-4S-aqL">
-                                        <rect key="frame" x="0.0" y="355" width="355" height="48"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <rect key="frame" x="0.0" y="355" width="355" height="60"/>
+                                        <color key="backgroundColor" red="0.88113897131179186" green="0.88113897131179186" blue="0.88113897131179186" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="YM0-AF-uGU">
-                                        <rect key="frame" x="0.0" y="355" width="355" height="48"/>
+                                        <rect key="frame" x="0.0" y="355" width="355" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="999" constant="60" id="2Uo-Wt-pev"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="p1M-vU-kdA"/>
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRo-zm-iXo">
-                                        <rect key="frame" x="310" y="443" width="30" height="30"/>
+                                        <rect key="frame" x="310" y="455" width="30" height="30"/>
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <state key="normal" image="ic_save"/>
                                         <connections>
@@ -320,7 +276,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJY-XS-0Ee">
-                                        <rect key="frame" x="15" y="437" width="43" height="42"/>
+                                        <rect key="frame" x="15" y="449" width="43" height="42"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <state key="normal" title="⌘ Z"/>
@@ -329,7 +285,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPv-UC-L1I">
-                                        <rect key="frame" x="138" y="418" width="80" height="80"/>
+                                        <rect key="frame" x="138" y="430" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="yPv-UC-L1I" secondAttribute="height" multiplier="1:1" id="I1C-Ei-65Y"/>
                                         </constraints>
@@ -387,7 +343,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pL1-em-sYb" secondAttribute="bottom" constant="10" id="7Wt-Jz-Ukd"/>
                             <constraint firstItem="avQ-4E-JY4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Gsj-v2-tqW"/>
@@ -412,10 +368,10 @@
             </objects>
             <point key="canvasLocation" x="-468" y="1564"/>
         </scene>
-        <!--Palettes View Controller-->
+        <!-- -->
         <scene sceneID="2Ed-7H-UrH">
             <objects>
-                <viewController storyboardIdentifier="PaletteView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="M6l-F5-4ok" customClass="PalettesViewController" customModule="Palette" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaletteView" title=" " useStoryboardIdentifierAsRestorationIdentifier="YES" id="M6l-F5-4ok" customClass="PalettesViewController" customModule="Palette" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ohe-Vd-M9A"/>
                         <viewControllerLayoutGuide type="bottom" id="hjs-CL-0rs"/>
@@ -592,7 +548,7 @@
                         <outlet property="flashButton" destination="POP-bF-WUB" id="fch-0E-ep4"/>
                         <outlet property="galleryButton" destination="SvJ-nQ-znc" id="Ao0-yg-gcS"/>
                         <outlet property="shutterButton" destination="gMO-Om-cez" id="4hT-6z-WHi"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="presentSwatchPicker" id="MyB-bl-qJg"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="presentSwatchPicker" id="MyB-bl-qJg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ya1-Il-GWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -655,7 +611,7 @@
                                         <connections>
                                             <outlet property="cellImageView" destination="8rW-Qd-rxG" id="Dqp-Yf-qCH"/>
                                             <outlet property="photoTitleLabel" destination="7hT-m3-tvh" id="Sxg-nc-VKS"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" identifier="presentSwatchPicker" id="K3a-rN-1jg"/>
+                                            <segue destination="BYZ-38-t0r" kind="presentation" identifier="presentSwatchPicker" id="K3a-rN-1jg"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -690,6 +646,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="2d4-7M-ADx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -703,7 +663,6 @@
     </scenes>
     <resources>
         <image name="ic_delete_forever" width="24" height="24"/>
-        <image name="ic_open_in_new" width="24" height="24"/>
         <image name="ic_photo" width="24" height="24"/>
         <image name="ic_save" width="30" height="30"/>
         <image name="shutter_button" width="80" height="80"/>
