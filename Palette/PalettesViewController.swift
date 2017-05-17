@@ -12,8 +12,7 @@ import DZNEmptyDataSet
 final class PalettesViewController: UIViewController {
     fileprivate var palettes: Array<Palette> = []
     @IBOutlet fileprivate var paletteCollectionView: UICollectionView!
-    @IBOutlet private var headerView: UIView!
-    
+
     fileprivate lazy var emptyView: PalettesEmptyView = {
         let view = PalettesEmptyView.instanceFromNib()
         view?.translatesAutoresizingMaskIntoConstraints = false
@@ -48,10 +47,6 @@ final class PalettesViewController: UIViewController {
         emptyView.inspirationButtonAction = {
             self.showInspirationView?()
         }
-        
-        headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        headerView.layer.shadowRadius = 0
-        headerView.layer.shadowOpacity = 0.1
     }
     
     private func setUpPalettes () {

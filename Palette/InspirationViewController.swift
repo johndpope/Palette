@@ -29,7 +29,6 @@ class InspirationViewController: UIViewController {
         return UIRefreshControl()
     }()
     
-    @IBOutlet private var headerView: UIView!
     @IBOutlet private var collectionView: UICollectionView!
     
     var didSavePalette: (() -> ())?
@@ -58,10 +57,6 @@ class InspirationViewController: UIViewController {
         emptyView.buttonAction = {
             self.loadPhotos()
         }
-        
-        headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        headerView.layer.shadowRadius = 0
-        headerView.layer.shadowOpacity = 0.1
         
         progressHUD.frame = view.frame
         progressHUD.graceTime = 0.5
