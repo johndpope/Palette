@@ -11,7 +11,6 @@ import CameraManager
 
 class CameraViewController: UIViewController {
     
-    @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var flashButton: UIButton!
     @IBOutlet private weak var galleryButton: UIButton!
     @IBOutlet private weak var shutterButton: UIButton!
@@ -41,10 +40,6 @@ class CameraViewController: UIViewController {
     }
     
     private func setupView() {
-        headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        headerView.layer.shadowRadius = 0
-        headerView.layer.shadowOpacity = 0.1
-        
         buttonContainerView.layer.cornerRadius = 9
         
         flashButton.layer.cornerRadius = 3

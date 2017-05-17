@@ -8,35 +8,19 @@
 
 import UIKit
 
-final class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
+final class PageViewController: UIPageViewController {
     
-    private var viewControllersArray: [UIViewController]!
+    fileprivate var viewControllersArray: [UIViewController]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
-        self.setUpViews()
+        self.setupViews()
+        self.setupNavigationBar()
         self.setViewControllers([self.viewControllersArray[1]], direction: .forward, animated: true, completion: nil)
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let currentIndex =  self.viewControllersArray.index(of: viewController)!-1
-        if currentIndex < 0 {
-            return nil
-        }
-        return self.viewControllersArray[currentIndex]
-        
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let currentIndex =  self.viewControllersArray.index(of: viewController)!+1
-        if currentIndex >= self.viewControllersArray.count {
-            return nil
-        }
-        return self.viewControllersArray[currentIndex]
-    }
-    
-    private func setUpViews() {
+    private func setupViews() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let cameraViewController = storyBoard.instantiateViewController(withIdentifier: "CameraView") as! CameraViewController
         
@@ -68,5 +52,32 @@ final class PageViewController: UIPageViewController, UIPageViewControllerDataSo
         }
         
         self.viewControllersArray = [cameraViewController, palettesViewController, inspirationViewController]
+    }
+
+    private func setupNavigationBar() {
+        guard let navBar = self.navigationController?.navigationBar else { return }
+        navBar.tintColor = .black
+        navBar.layer.shadowOffset = CGSize(width: 0, height: 5)
+        navBar.layer.shadowRadius = 0
+        navBar.layer.shadowOpacity = 0.1
+    }
+}
+
+extension PageViewController: UIPageViewControllerDataSource {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        let currentIndex =  self.viewControllersArray.index(of: viewController)!-1
+        if currentIndex < 0 {
+            return nil
+        }
+        return self.viewControllersArray[currentIndex]
+        
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        let currentIndex =  self.viewControllersArray.index(of: viewController)!+1
+        if currentIndex >= self.viewControllersArray.count {
+            return nil
+        }
+        return self.viewControllersArray[currentIndex]
     }
 }
