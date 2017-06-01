@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UINavigationBar.appearance().titleTextAttributes = [ NSFontAttributeName: font]
             UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
         }
+        UINavigationBar.appearance().tintColor = .black
         
         return true
     }

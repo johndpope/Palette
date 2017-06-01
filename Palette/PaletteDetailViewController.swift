@@ -43,12 +43,6 @@ final class PaletteDetailViewController: UIViewController {
         )
         
         navigationItem.setRightBarButton(shareButton, animated: true)
-        
-        
-        
-        navigationItem.backBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont(name: "Menlo", size: 17)!
-            ], for: .normal)
     }
     
     @IBAction private func didTapDeleteButton() {
