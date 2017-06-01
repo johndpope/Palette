@@ -481,7 +481,7 @@
                                         <rect key="frame" x="15" y="398" width="86" height="24"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <state key="normal" title="Photos" image="ic_photo"/>
+                                        <state key="normal" title="Photos" image="ic_camera_roll"/>
                                         <connections>
                                             <action selector="gallery:" destination="CuT-LX-gpp" eventType="touchUpInside" id="mGp-fn-YPU"/>
                                         </connections>
@@ -663,8 +663,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_camera_roll" width="24" height="24"/>
         <image name="ic_delete_forever" width="24" height="24"/>
-        <image name="ic_photo" width="24" height="24"/>
         <image name="ic_save" width="30" height="30"/>
         <image name="shutter_button" width="80" height="80"/>
         <image name="swatch_picker" width="30" height="30"/>

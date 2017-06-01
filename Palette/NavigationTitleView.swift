@@ -32,10 +32,18 @@ final class NavigationTitleView: UIView {
         }
     }
 
-    func scroll(direction: UIPageViewControllerNavigationDirection, to index: Int) {
+    func scroll(to index: Int) {
         guard index < icons.count else { return }
         
-        horizontalConstraint.constant += direction == .reverse ? self.iconOffset : -self.iconOffset
+        var offset: CGFloat
+        switch index {
+        case 0: offset = iconOffset
+        case 1: offset = 0
+        case 2: offset = -iconOffset
+        default: offset = 0
+        }
+        
+        horizontalConstraint.constant = offset
         
         UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseOut, animations: {
             self.highlightIcon(at: index)
