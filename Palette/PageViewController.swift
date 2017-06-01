@@ -36,7 +36,7 @@ final class PageViewController: UIPageViewController {
             self.setViewControllers([palettesViewController], direction: .forward, animated: true, completion: { finished in
                 if finished {
                     palettesViewController.scrollToTop()
-                    self.titleView?.scroll(direction: .forward, to: 1)
+                    self.titleView?.scroll(to: 1)
                 }
             })
         }
@@ -48,7 +48,7 @@ final class PageViewController: UIPageViewController {
                                     completion: { complete in
                                         if complete {
                                             palettesViewController.scrollToTop()
-                                            self.titleView?.scroll(direction: .reverse, to: 1)
+                                            self.titleView?.scroll(to: 1)
                                         }
             })
         }
@@ -60,7 +60,7 @@ final class PageViewController: UIPageViewController {
                                     completion: { complete in
                                         if complete {
                                             palettesViewController.scrollToTop()
-                                            self.titleView?.scroll(direction: .reverse, to: 0)
+                                            self.titleView?.scroll(to: 0)
                                         }
             })
         }
@@ -72,7 +72,7 @@ final class PageViewController: UIPageViewController {
                                     completion: { complete in
                                         if complete {
                                             palettesViewController.scrollToTop()
-                                            self.titleView?.scroll(direction: .forward, to: 2)
+                                            self.titleView?.scroll(to: 2)
                                         }
             })
         }
@@ -124,12 +124,9 @@ extension PageViewController: UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let titleView = self.titleView,
-            let previousVC = previousViewControllers.first,
-            let previousIndex = viewControllersArray.index(of: previousVC),
             let currentVC = viewControllers?.first,
-            let currentIndex = viewControllersArray.index(of: currentVC),
-            currentIndex != previousIndex else { return }
+            let currentIndex = viewControllersArray.index(of: currentVC) else { return }
         
-        titleView.scroll(direction: currentIndex > previousIndex ? .forward : .reverse, to: currentIndex)
+        titleView.scroll(to: currentIndex)
     }
 }
