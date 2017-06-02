@@ -24,14 +24,27 @@ final class NavigationTitleView: UIView {
         return (self.containerView.frame.width / 2.0) - (self.leftIcon.frame.width / 2.0)
     }()
     
+    var tappedAtIndex: ((Int) -> ())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        for icon in icons {
+        for (i, icon) in icons.enumerated() {
             icon.image = icon.image?.withRenderingMode(.alwaysTemplate)
             icon.tintColor = .lightGray
+            icon.tag = i
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.didTapAtIndex(sender:)))
+            icon.addGestureRecognizer(tap)
         }
+        
+        highlightIcon(at: 1)
     }
 
+    @objc func didTapAtIndex(sender: UITapGestureRecognizer) {
+        guard let view = sender.view else { return }
+        self.tappedAtIndex?(view.tag)
+    }
+    
     func scroll(to index: Int) {
         guard index < icons.count else { return }
         
@@ -47,12 +60,11 @@ final class NavigationTitleView: UIView {
         
         UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseOut, animations: {
             self.highlightIcon(at: index)
-            self.setNeedsLayout()
             self.layoutIfNeeded()
         }, completion: nil)
     }
     
-    func highlightIcon(at index: Int) {
+    private func highlightIcon(at index: Int) {
         guard index < icons.count else { return }
         
         for (i, icon) in icons.enumerated() {

@@ -81,20 +81,29 @@ final class PageViewController: UIPageViewController {
     }
 
     private func setupNavigationBar() {
-        guard let navBar = self.navigationController?.navigationBar else { return }
+        guard let navBar = navigationController?.navigationBar else { return }
         navBar.layer.shadowOffset = CGSize(width: 0, height: 5)
         navBar.layer.shadowRadius = 0
         navBar.layer.shadowOpacity = 0.1
-
         navigationItem.titleView = titleView
-    }
+        navigationItem.titleView?.isUserInteractionEnabled = true
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if let vc = viewControllers?.first,
-            let index = viewControllersArray.index(of: vc) {
-            titleView?.highlightIcon(at: index)
+        guard let titleView = titleView else { return }
+        
+        titleView.tappedAtIndex = { index in
+            guard let currentVC = self.viewControllers?.first,
+                let currentIndex = self.viewControllersArray.index(of: currentVC) else { return }
+            let direction: UIPageViewControllerNavigationDirection = currentIndex < index ? .forward : .reverse
+            
+            self.setViewControllers(
+                [self.viewControllersArray[index]],
+                direction: direction,
+                animated: true,
+                completion: { completed in
+                    self.titleView?.scroll(to: index)
+            })
         }
+
     }
 }
 
