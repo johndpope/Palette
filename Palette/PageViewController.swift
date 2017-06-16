@@ -10,11 +10,16 @@ import UIKit
 
 final class PageViewController: UIPageViewController {
     
+    enum views: Int {
+        case camera
+        case palettes
+        case inspiration
+    }
+    
     fileprivate var viewControllersArray: [UIViewController]!
     fileprivate lazy var titleView: NavigationTitleView? = {
         return NavigationTitleView.instanceFromNib() as? NavigationTitleView
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +27,7 @@ final class PageViewController: UIPageViewController {
         delegate = self
         setupViews()
         setupNavigationBar()
-        setViewControllers([viewControllersArray[1]], direction: .forward, animated: true, completion: nil)
+        setViewControllers([viewControllersArray[views.palettes.rawValue]], direction: .forward, animated: true, completion: nil)
     }
     
     private func setupViews() {
@@ -33,11 +38,14 @@ final class PageViewController: UIPageViewController {
         let palettesViewController = storyBoard.instantiateViewController(withIdentifier: "PaletteView") as! PalettesViewController
         
         cameraViewController.didSavePalette = {
-            self.setViewControllers([palettesViewController], direction: .forward, animated: true, completion: { finished in
-                if finished {
-                    palettesViewController.scrollToTop()
-                    self.titleView?.scroll(to: 1)
-                }
+            self.setViewControllers([palettesViewController],
+                                    direction: .forward,
+                                    animated: true,
+                                    completion: { complete in
+                                        if complete {
+                                            palettesViewController.scrollToTop()
+                                            self.titleView?.scroll(to: views.palettes.rawValue)
+                                        }
             })
         }
         
@@ -48,7 +56,7 @@ final class PageViewController: UIPageViewController {
                                     completion: { complete in
                                         if complete {
                                             palettesViewController.scrollToTop()
-                                            self.titleView?.scroll(to: 1)
+                                            self.titleView?.scroll(to: views.palettes.rawValue)
                                         }
             })
         }
@@ -60,7 +68,7 @@ final class PageViewController: UIPageViewController {
                                     completion: { complete in
                                         if complete {
                                             palettesViewController.scrollToTop()
-                                            self.titleView?.scroll(to: 0)
+                                            self.titleView?.scroll(to: views.camera.rawValue)
                                         }
             })
         }
@@ -72,7 +80,7 @@ final class PageViewController: UIPageViewController {
                                     completion: { complete in
                                         if complete {
                                             palettesViewController.scrollToTop()
-                                            self.titleView?.scroll(to: 2)
+                                            self.titleView?.scroll(to: views.inspiration.rawValue)
                                         }
             })
         }
@@ -85,16 +93,16 @@ final class PageViewController: UIPageViewController {
         navBar.layer.shadowOffset = CGSize(width: 0, height: 5)
         navBar.layer.shadowRadius = 0
         navBar.layer.shadowOpacity = 0.1
-        navigationItem.titleView = titleView
-        navigationItem.titleView?.isUserInteractionEnabled = true
     
         guard let titleView = titleView else { return }
+        navigationItem.titleView = titleView
+        navigationItem.titleView?.isUserInteractionEnabled = true
         
         titleView.tappedAtIndex = { index in
             guard let currentVC = self.viewControllers?.first,
                 let currentIndex = self.viewControllersArray.index(of: currentVC) else { return }
-            let direction: UIPageViewControllerNavigationDirection = currentIndex < index ? .forward : .reverse
             
+            let direction: UIPageViewControllerNavigationDirection = currentIndex < index ? .forward : .reverse
             self.setViewControllers(
                 [self.viewControllersArray[index]],
                 direction: direction,
@@ -109,28 +117,21 @@ final class PageViewController: UIPageViewController {
 
 extension PageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let currentIndex =  viewControllersArray.index(of: viewController)!-1
-        if currentIndex < 0 {
-            return nil
-        }
-        return viewControllersArray[currentIndex]
-        
+        guard let index = viewControllersArray.index(of: viewController),
+            index - 1 >= 0 else { return nil }
+
+        return viewControllersArray[index - 1]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let currentIndex =  viewControllersArray.index(of: viewController)!+1
-        if currentIndex >= viewControllersArray.count {
-            return nil
-        }
-        return viewControllersArray[currentIndex]
+        guard let index =  viewControllersArray.index(of: viewController),
+            index + 1 < viewControllersArray.count else { return nil }
+        
+        return viewControllersArray[index + 1]
     }
 }
 
 extension PageViewController: UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-
-    }
-    
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let titleView = self.titleView,
             let currentVC = viewControllers?.first,

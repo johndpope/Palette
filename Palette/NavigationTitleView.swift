@@ -51,7 +51,6 @@ final class NavigationTitleView: UIView {
         var offset: CGFloat
         switch index {
         case 0: offset = iconOffset
-        case 1: offset = 0
         case 2: offset = -iconOffset
         default: offset = 0
         }
