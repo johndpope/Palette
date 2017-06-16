@@ -67,7 +67,7 @@ class SwatchPickerViewController: UIViewController {
     
     @IBAction func addSwatch() {
         addSwatchToCollection(swatchPickerView.colorAtPickerLocation())
-        saveButton.isEnabled = self.swatchArray.count > 0
+        saveButton.isEnabled = swatchArray.count > 0
     }
     
     @IBAction private func removeSwatch(_ sender: AnyObject) {
@@ -77,7 +77,7 @@ class SwatchPickerViewController: UIViewController {
             swatchStackView.removeArrangedSubview(subview!)
             subview!.removeFromSuperview()
         }
-        saveButton.isEnabled = self.swatchArray.count > 0
+        saveButton.isEnabled = swatchArray.count > 0
     }
     
     @IBAction private func cancelButton(_ sender: AnyObject) {

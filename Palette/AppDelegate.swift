@@ -16,6 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if let font = UIFont(name: "Menlo", size: 16.0) {
+            UINavigationBar.appearance().titleTextAttributes = [ NSFontAttributeName: font]
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
+        }
+        UINavigationBar.appearance().tintColor = .black
+        
         return true
     }
 

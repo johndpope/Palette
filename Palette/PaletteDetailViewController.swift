@@ -12,14 +12,14 @@ import MBProgressHUD
 final class PaletteDetailViewController: UIViewController {
     
     @IBOutlet fileprivate var paletteDetailCollectionView: UICollectionView!
-    @IBOutlet fileprivate var headerView: UIView!
-        
+    
     var palette: Palette?
     var paletteIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupNavigationBar()
     }
     
     private func setupView() {
@@ -32,10 +32,17 @@ final class PaletteDetailViewController: UIViewController {
             backgroundView.image = backgroundImage
             view.insertSubview(backgroundView, at: 0)
         }
+    }
+    
+    private func setupNavigationBar() {
+        let shareButton = UIBarButtonItem.init(
+            image: UIImage(named: "ic_open_in_new"),
+            style: .plain,
+            target: self,
+            action: #selector(shareButtonPressed)
+        )
         
-        headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        headerView.layer.shadowRadius = 0
-        headerView.layer.shadowOpacity = 0.1
+        navigationItem.setRightBarButton(shareButton, animated: true)
     }
     
     @IBAction private func didTapDeleteButton() {
@@ -56,7 +63,7 @@ final class PaletteDetailViewController: UIViewController {
             style: .destructive,
             handler: { action in
                 self.deletePalette()
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popToRootViewController(animated: true)
         }))
         
         present(alertController, animated: true, completion: nil)
@@ -83,11 +90,7 @@ final class PaletteDetailViewController: UIViewController {
         defaults.synchronize()
     }
     
-    @IBAction private func backButton(_ sender: AnyObject) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction private func shareButton(_ sender: AnyObject) {
+    @objc private func shareButtonPressed() {
         guard let snapshot = palette?.shareableImage() else { return }
         
         let activityVC = UIActivityViewController(activityItems: [snapshot], applicationActivities: nil)

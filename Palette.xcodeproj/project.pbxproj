@@ -36,6 +36,8 @@
 		9273FAA71C86627300EF3DDD /* PaletteDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9273FAA61C86627300EF3DDD /* PaletteDetailCollectionViewCell.swift */; };
 		9273FAA91C86785000EF3DDD /* UIColor+valueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9273FAA81C86785000EF3DDD /* UIColor+valueExtension.swift */; };
 		9279166B1CA6E6C10065773A /* InterfaceIdiom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9279166A1CA6E6C10065773A /* InterfaceIdiom.swift */; };
+		927F47EF1EE0681600F6334A /* NavigationTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 927F47EE1EE0681600F6334A /* NavigationTitleView.xib */; };
+		927F47F11EE068BF00F6334A /* NavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927F47F01EE068BF00F6334A /* NavigationTitleView.swift */; };
 		928EA1E61C8760B500981E0D /* PaletteDetailCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928EA1E51C8760B500981E0D /* PaletteDetailCollectionFooterView.swift */; };
 		92B79B061E96C83800FEA387 /* PaletteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B79B051E96C83800FEA387 /* PaletteView.xib */; };
 		92B79B081E96C8E600FEA387 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B79B071E96C8E600FEA387 /* PaletteView.swift */; };
@@ -77,6 +79,8 @@
 		9273FAA61C86627300EF3DDD /* PaletteDetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		9273FAA81C86785000EF3DDD /* UIColor+valueExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+valueExtension.swift"; sourceTree = "<group>"; };
 		9279166A1CA6E6C10065773A /* InterfaceIdiom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceIdiom.swift; sourceTree = "<group>"; };
+		927F47EE1EE0681600F6334A /* NavigationTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationTitleView.xib; sourceTree = "<group>"; };
+		927F47F01EE068BF00F6334A /* NavigationTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationTitleView.swift; sourceTree = "<group>"; };
 		928EA1E51C8760B500981E0D /* PaletteDetailCollectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteDetailCollectionFooterView.swift; sourceTree = "<group>"; };
 		92B79B051E96C83800FEA387 /* PaletteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaletteView.xib; sourceTree = "<group>"; };
 		92B79B071E96C8E600FEA387 /* PaletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				9273FA3B1C7C08B000EF3DDD /* AppDelegate.swift */,
 				9273FA9C1C84E60000EF3DDD /* Palette.swift */,
 				9273FA9A1C84BA1A00EF3DDD /* PageViewController.swift */,
+				927F47F01EE068BF00F6334A /* NavigationTitleView.swift */,
+				927F47EE1EE0681600F6334A /* NavigationTitleView.xib */,
 				92B79B071E96C8E600FEA387 /* PaletteView.swift */,
 				92B79B051E96C83800FEA387 /* PaletteView.xib */,
 				9273FA931C81144C00EF3DDD /* Palettes */,
@@ -282,6 +288,7 @@
 				9273FA431C7C08B000EF3DDD /* Assets.xcassets in Resources */,
 				9200F04A1E7AC7B500C10EBD /* InspirationEmptyView.xib in Resources */,
 				9273FA411C7C08B000EF3DDD /* Main.storyboard in Resources */,
+				927F47EF1EE0681600F6334A /* NavigationTitleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +352,7 @@
 				9273FA631C7E109100EF3DDD /* InspirationViewController.swift in Sources */,
 				926004481E664A260086F20F /* YPMagnifyingGlass.swift in Sources */,
 				92B79B081E96C8E600FEA387 /* PaletteView.swift in Sources */,
+				927F47F11EE068BF00F6334A /* NavigationTitleView.swift in Sources */,
 				926004491E664A260086F20F /* YPMagnifyingView.swift in Sources */,
 				9273FA3E1C7C08B000EF3DDD /* SwatchPickerViewController.swift in Sources */,
 				924C058C1E816E780013759B /* PalettesEmptyView.swift in Sources */,
