@@ -17,6 +17,7 @@ class CameraViewController: UIViewController {
     @IBOutlet private weak var cameraView: UIView!
     @IBOutlet private weak var buttonContainerView: UIView!
     
+    private let store = AppDefaultsManager()
     private let cameraManager = CameraManager()
     private let picker = UIImagePickerController()
     
@@ -28,6 +29,11 @@ class CameraViewController: UIViewController {
         picker.delegate = self
         setupCamera()
         setupView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        store.userVisited(page: .camera)
     }
 
     private func setupCamera() {
