@@ -8,17 +8,22 @@
 
 import UIKit
 
+enum pages: Int {
+    case camera
+    case palettes
+    case inspiration
+    case detailPalette
+}
+
 final class PageViewController: UIPageViewController {
     
-    enum views: Int {
-        case camera
-        case palettes
-        case inspiration
-    }
-    
     fileprivate var viewControllersArray: [UIViewController]!
-    fileprivate lazy var titleView: NavigationTitleView? = {
-        return NavigationTitleView.instanceFromNib() as? NavigationTitleView
+    
+    private let store = AppDefaultsManager()
+    
+    fileprivate lazy var titleView: NavigationTitleView! = {
+        let view = NavigationTitleView.instanceFromNib() as! NavigationTitleView
+        return view
     }()
     
     override func viewDidLoad() {
@@ -27,39 +32,29 @@ final class PageViewController: UIPageViewController {
         delegate = self
         setupViews()
         setupNavigationBar()
-        setViewControllers([viewControllersArray[views.palettes.rawValue]], direction: .forward, animated: true, completion: nil)
+        setViewControllers([viewControllersArray[pages.palettes.rawValue]], direction: .forward, animated: true, completion: nil)
     }
     
     private func setupViews() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let cameraViewController = storyBoard.instantiateViewController(withIdentifier: "CameraView") as! CameraViewController
-        
         let inspirationViewController = storyBoard.instantiateViewController(withIdentifier: "InspirationView") as! InspirationViewController
         let palettesViewController = storyBoard.instantiateViewController(withIdentifier: "PaletteView") as! PalettesViewController
         
-        cameraViewController.didSavePalette = {
+        let didSavePalette: () -> () = {
             self.setViewControllers([palettesViewController],
                                     direction: .forward,
                                     animated: true,
                                     completion: { complete in
                                         if complete {
                                             palettesViewController.scrollToTop()
-                                            self.titleView?.scroll(to: views.palettes.rawValue)
+                                            self.titleView.scroll(to: pages.palettes.rawValue)
+                                            self.store.userSavedPalette()
                                         }
             })
         }
-        
-        inspirationViewController.didSavePalette = {
-            self.setViewControllers([palettesViewController],
-                                    direction: .reverse,
-                                    animated: true,
-                                    completion: { complete in
-                                        if complete {
-                                            palettesViewController.scrollToTop()
-                                            self.titleView?.scroll(to: views.palettes.rawValue)
-                                        }
-            })
-        }
+        cameraViewController.didSavePalette = didSavePalette
+        inspirationViewController.didSavePalette = didSavePalette
         
         palettesViewController.showCameraView = {
             self.setViewControllers([cameraViewController],
@@ -68,7 +63,7 @@ final class PageViewController: UIPageViewController {
                                     completion: { complete in
                                         if complete {
                                             palettesViewController.scrollToTop()
-                                            self.titleView?.scroll(to: views.camera.rawValue)
+                                            self.titleView.scroll(to: pages.camera.rawValue)
                                         }
             })
         }
@@ -80,7 +75,7 @@ final class PageViewController: UIPageViewController {
                                     completion: { complete in
                                         if complete {
                                             palettesViewController.scrollToTop()
-                                            self.titleView?.scroll(to: views.inspiration.rawValue)
+                                            self.titleView.scroll(to: pages.inspiration.rawValue)
                                         }
             })
         }
@@ -93,8 +88,7 @@ final class PageViewController: UIPageViewController {
         navBar.layer.shadowOffset = CGSize(width: 0, height: 5)
         navBar.layer.shadowRadius = 0
         navBar.layer.shadowOpacity = 0.1
-    
-        guard let titleView = titleView else { return }
+        
         navigationItem.titleView = titleView
         navigationItem.titleView?.isUserInteractionEnabled = true
         
@@ -111,7 +105,6 @@ final class PageViewController: UIPageViewController {
                     self.titleView?.scroll(to: index)
             })
         }
-
     }
 }
 

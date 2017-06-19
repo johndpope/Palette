@@ -106,8 +106,6 @@ class SwatchPickerViewController: UIViewController {
             palettesArray = [encodedPalette]
             defaults.set(palettesArray, forKey: "palettesArray")
         }
-        
-        defaults.synchronize()
         dismiss(animated: true, completion: self.didSavePalette)
     }
 }

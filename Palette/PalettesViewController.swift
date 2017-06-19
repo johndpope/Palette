@@ -8,11 +8,14 @@
 
 import UIKit
 import DZNEmptyDataSet
+import StoreKit
 
 final class PalettesViewController: UIViewController {
-    fileprivate var palettes: Array<Palette> = []
-    @IBOutlet fileprivate var paletteCollectionView: UICollectionView!
+    private let store = AppDefaultsManager()
 
+    @IBOutlet fileprivate var paletteCollectionView: UICollectionView!
+    fileprivate var palettes: Array<Palette> = []
+    
     fileprivate lazy var emptyView: PalettesEmptyView = {
         let view = PalettesEmptyView.instanceFromNib()
         view?.translatesAutoresizingMaskIntoConstraints = false
@@ -35,8 +38,14 @@ final class PalettesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setUpPalettes()
+        palettes = store.getPalettesArray()
         paletteCollectionView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        store.userVisited(page: .palettes)
+        requestReview()
     }
     
     private func setupView () {
@@ -46,18 +55,6 @@ final class PalettesViewController: UIViewController {
         
         emptyView.inspirationButtonAction = {
             self.showInspirationView?()
-        }
-    }
-    
-    private func setUpPalettes () {
-        palettes = []
-        let defaults = UserDefaults.standard
-        if let encodedArray = defaults.object(forKey: "palettesArray") as? [Data] {
-            for data in encodedArray {
-                if let palette: Palette = NSKeyedUnarchiver.unarchiveObject(with: data) as? Palette {
-                    palettes.append(palette)
-                }
-            }
         }
     }
     
@@ -100,8 +97,22 @@ final class PalettesViewController: UIViewController {
             encodedArray.remove(at: index)
             defaults.set(encodedArray, forKey: "palettesArray")
         }
+    }
+    
+    private func requestReview() {
+        guard store.detailPalettePageVisits != 0,
+            store.didSavePaletteThisSession,
+            #available(iOS 10.3, *) else { return }
         
-        defaults.synchronize()
+        if let lastRequest = store.dateOfLastReviewRequest {
+            let interval = 60.0 * 60.0 * 24.0 * 7.0 //1 Week
+            let now = Date()
+            
+            guard now.timeIntervalSince(lastRequest as Date) >= interval else { return }
+        }
+        
+        SKStoreReviewController.requestReview()
+        store.requestedReview()
     }
 }
 
