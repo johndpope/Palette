@@ -13,6 +13,8 @@ final class PaletteDetailViewController: UIViewController {
     
     @IBOutlet fileprivate var paletteDetailCollectionView: UICollectionView!
     
+    private let store = AppDefaultsManager()
+    
     var palette: Palette?
     var paletteIndex: Int?
     
@@ -20,6 +22,11 @@ final class PaletteDetailViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupNavigationBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        store.userVisited(page: .detailPalette)
     }
     
     private func setupView() {
@@ -86,8 +93,6 @@ final class PaletteDetailViewController: UIViewController {
             encodedArray.remove(at: index)
             defaults.set(encodedArray, forKey: "palettesArray")
         }
-        
-        defaults.synchronize()
     }
     
     @objc private func shareButtonPressed() {
