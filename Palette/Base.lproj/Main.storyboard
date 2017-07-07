@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="26y-JL-bl8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="26y-JL-bl8">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Menlo.ttc">
+            <string>Menlo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Palette Detail View Controller-->
         <scene sceneID="QOQ-TV-N3I">
@@ -20,11 +25,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Cv3-W6-1TO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wl5-xQ-Qrd">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LNk-Ve-mj5">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="wop-8l-rNz">
@@ -49,27 +54,16 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaJ-bH-GJS">
-                                                    <rect key="frame" x="65" y="21" width="65" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="65" id="4TS-hX-rZq"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="65" y="21" width="63.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R:255 G:255 B:255" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Evp-Na-7kw">
-                                                    <rect key="frame" x="140" y="21" width="182" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="185" id="OIL-IG-gnK"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="138.5" y="21" width="154" height="18"/>
                                                     <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="OIL-IG-gnK"/>
-                                                        </mask>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                         </view>
@@ -78,7 +72,7 @@
                                             <constraint firstItem="d51-n2-isR" firstAttribute="top" secondItem="brq-qQ-FWv" secondAttribute="top" constant="5" id="1fW-Hf-DsL"/>
                                             <constraint firstItem="MaJ-bH-GJS" firstAttribute="centerY" secondItem="d51-n2-isR" secondAttribute="centerY" id="2vW-5x-f9Y"/>
                                             <constraint firstItem="Evp-Na-7kw" firstAttribute="centerY" secondItem="d51-n2-isR" secondAttribute="centerY" id="FdU-IR-2BW"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="Evp-Na-7kw" secondAttribute="trailing" constant="5" id="MOe-up-zVM"/>
+                                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Evp-Na-7kw" secondAttribute="trailing" constant="5" id="MOe-up-zVM"/>
                                             <constraint firstItem="MaJ-bH-GJS" firstAttribute="leading" secondItem="d51-n2-isR" secondAttribute="trailing" constant="10" id="QeY-Df-2sR"/>
                                             <constraint firstItem="d51-n2-isR" firstAttribute="leading" secondItem="brq-qQ-FWv" secondAttribute="leading" constant="5" id="eJh-0Y-xKE"/>
                                             <constraint firstItem="Evp-Na-7kw" firstAttribute="leading" secondItem="MaJ-bH-GJS" secondAttribute="trailing" constant="10" id="fmL-0F-t4Z"/>
@@ -130,9 +124,10 @@
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
+                                                <constraint firstItem="HMT-Zt-xat" firstAttribute="centerX" secondItem="dj5-aI-Ubr" secondAttribute="centerX" id="0DD-Rq-HWf"/>
                                                 <constraint firstItem="HMT-Zt-xat" firstAttribute="top" secondItem="dj5-aI-Ubr" secondAttribute="top" constant="5" id="L1z-qU-8Jk"/>
-                                                <constraint firstAttribute="trailing" secondItem="HMT-Zt-xat" secondAttribute="trailing" constant="40" id="MNv-Ii-COO"/>
-                                                <constraint firstItem="HMT-Zt-xat" firstAttribute="leading" secondItem="dj5-aI-Ubr" secondAttribute="leading" constant="40" id="pgp-xw-MB3"/>
+                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="HMT-Zt-xat" secondAttribute="trailing" constant="40" id="MNv-Ii-COO"/>
+                                                <constraint firstItem="HMT-Zt-xat" firstAttribute="leading" relation="lessThanOrEqual" secondItem="dj5-aI-Ubr" secondAttribute="leading" constant="40" id="pgp-xw-MB3"/>
                                                 <constraint firstAttribute="bottom" secondItem="HMT-Zt-xat" secondAttribute="bottom" constant="5" id="r7A-TR-czr"/>
                                             </constraints>
                                         </view>
@@ -276,7 +271,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJY-XS-0Ee">
-                                        <rect key="frame" x="15" y="449" width="43" height="42"/>
+                                        <rect key="frame" x="15" y="449" width="42" height="42"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <state key="normal" title="⌘ Z"/>
@@ -338,6 +333,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="NZg-LS-6tw" secondAttribute="bottom" id="2CS-uN-hqi"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NZg-LS-6tw" secondAttribute="trailing" constant="20" id="cqT-9j-gTC"/>
                                     <constraint firstAttribute="height" constant="60" id="jNI-Uy-Dqk"/>
                                     <constraint firstItem="NZg-LS-6tw" firstAttribute="leading" secondItem="avQ-4E-JY4" secondAttribute="leading" constant="20" id="lc1-SP-dfI"/>
                                 </constraints>
@@ -377,11 +373,11 @@
                         <viewControllerLayoutGuide type="bottom" id="hjs-CL-0rs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="osE-Aj-XDb">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gPr-Yx-ULQ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TNK-Ua-MSS">
                                     <size key="itemSize" width="335" height="70"/>
@@ -436,13 +432,12 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="gPr-Yx-ULQ" firstAttribute="leading" secondItem="osE-Aj-XDb" secondAttribute="leading" id="3Ax-mF-xPW"/>
-                            <constraint firstItem="gPr-Yx-ULQ" firstAttribute="top" secondItem="ohe-Vd-M9A" secondAttribute="bottom" id="Zix-Ej-fGz"/>
+                            <constraint firstItem="gPr-Yx-ULQ" firstAttribute="top" secondItem="osE-Aj-XDb" secondAttribute="top" id="adD-Yk-3y5"/>
                             <constraint firstAttribute="trailing" secondItem="gPr-Yx-ULQ" secondAttribute="trailing" id="cp6-xH-KaF"/>
                             <constraint firstItem="hjs-CL-0rs" firstAttribute="top" secondItem="gPr-Yx-ULQ" secondAttribute="bottom" id="zga-pC-yLy"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="downloads" id="bXl-GH-fIJ"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="paletteCollectionView" destination="gPr-Yx-ULQ" id="S2s-GP-9G4"/>
                         <segue destination="RLi-rH-8tO" kind="showDetail" identifier="ShowPaletteDetailPreview" id="MRi-wn-lUc"/>
@@ -450,7 +445,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IvP-Dj-Doz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="673" y="804"/>
+            <point key="canvasLocation" x="672.79999999999995" y="803.74812593703155"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="Rjc-xR-Qs0">
@@ -471,11 +466,11 @@
                         <viewControllerLayoutGuide type="bottom" id="gRS-L7-xo2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4t3-sm-o37">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aPB-z4-wEa">
-                                <rect key="frame" x="10" y="20" width="355" height="465"/>
+                                <rect key="frame" x="10" y="40" width="355" height="465"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvJ-nQ-znc">
                                         <rect key="frame" x="15" y="398" width="86" height="24"/>
@@ -489,7 +484,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POP-bF-WUB">
                                         <rect key="frame" x="265" y="394" width="75" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="75" id="uGG-Kl-sHp"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="uGG-Kl-sHp"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -542,7 +537,6 @@
                             <constraint firstItem="aPB-z4-wEa" firstAttribute="leading" secondItem="4t3-sm-o37" secondAttribute="leading" constant="10" id="yy6-ZR-tKs"/>
                         </constraints>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="buttonContainerView" destination="aPB-z4-wEa" id="Gld-2S-HSf"/>
                         <outlet property="cameraView" destination="b63-TM-5YN" id="rVx-D1-bmc"/>
@@ -565,11 +559,11 @@
                         <viewControllerLayoutGuide type="bottom" id="GRI-WT-OTB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="06i-ZZ-MN7">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="apH-kN-26a">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="YuS-9m-nvd">
                                     <size key="itemSize" width="335" height="400"/>
@@ -624,7 +618,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="GRI-WT-OTB" firstAttribute="top" secondItem="apH-kN-26a" secondAttribute="bottom" id="4Lm-eU-rDD"/>
-                            <constraint firstItem="apH-kN-26a" firstAttribute="top" secondItem="NgH-kq-Djz" secondAttribute="bottom" id="RAj-tn-712"/>
+                            <constraint firstItem="apH-kN-26a" firstAttribute="top" secondItem="06i-ZZ-MN7" secondAttribute="top" id="97g-qO-Yr7"/>
                             <constraint firstItem="apH-kN-26a" firstAttribute="leading" secondItem="06i-ZZ-MN7" secondAttribute="leading" id="Uve-aY-p8I"/>
                             <constraint firstAttribute="trailing" secondItem="apH-kN-26a" secondAttribute="trailing" id="Voe-t0-OX2"/>
                         </constraints>
@@ -637,7 +631,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0PM-GQ-fwK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-127" y="804"/>
+            <point key="canvasLocation" x="-127.2" y="803.74812593703155"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QOt-pj-dh4">
@@ -670,6 +664,6 @@
         <image name="swatch_picker" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MyB-bl-qJg"/>
+        <segue reference="K3a-rN-1jg"/>
     </inferredMetricsTieBreakers>
 </document>
