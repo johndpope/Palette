@@ -82,7 +82,7 @@ class AppDefaultsManager {
         defaults.set(true, forKey: AppDefaultsManager.savedPaletteThisSession)
     }
     
-    func userVisited(page: pages) {
+    func userVisited(page: page) {
         var pageKey: String
         switch page {
         case .camera: pageKey = AppDefaultsManager.cameraPageVisits

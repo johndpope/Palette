@@ -15,6 +15,7 @@ final class NavigationTitleView: UIView {
     @IBOutlet private weak var centerIcon: UIImageView!
     @IBOutlet private weak var rightIcon: UIImageView!
     @IBOutlet private weak var horizontalConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var widthConstraint: NSLayoutConstraint!
     
     private lazy var icons: [UIImageView] = {
         return [self.leftIcon, self.centerIcon, self.rightIcon]
@@ -55,12 +56,17 @@ final class NavigationTitleView: UIView {
         default: offset = 0
         }
         
-        horizontalConstraint.constant = offset
+        horizontalConstraint.constant = offset - self.frame.origin.x
         
         UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseOut, animations: {
             self.highlightIcon(at: index)
             self.layoutIfNeeded()
         }, completion: nil)
+    }
+    
+    func updateSize(to width: CGFloat) {
+        widthConstraint.constant = width
+        layoutIfNeeded()
     }
     
     private func highlightIcon(at index: Int) {

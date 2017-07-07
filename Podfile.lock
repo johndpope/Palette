@@ -2,6 +2,11 @@ PODS:
   - Alamofire (4.4.0)
   - CameraManager (3.0.0)
   - DZNEmptyDataSet (1.8.1)
+  - IGListKit (3.0.0):
+    - IGListKit/Default (= 3.0.0)
+  - IGListKit/Default (3.0.0):
+    - IGListKit/Diffing
+  - IGListKit/Diffing (3.0.0)
   - MBProgressHUD (1.0.0)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
@@ -11,6 +16,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.4)
   - CameraManager (~> 3.0)
   - DZNEmptyDataSet (~> 1.8.1)
+  - IGListKit (~> 3.0)
   - MBProgressHUD (~> 1.0.0)
   - SDWebImage (~> 3.8.2)
 
@@ -18,9 +24,10 @@ SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   CameraManager: 8b92bc0ab51b598d9a4c01998bc9f1efb9b681bf
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  IGListKit: 9eab6856a15fa25ad72018ff9d9eb2178c240fff
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
 
-PODFILE CHECKSUM: 30282ddfbf8b30a660e717bc9d005450883be185
+PODFILE CHECKSUM: 2b2284236634772adc2cef0146385db45995acd7
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1
