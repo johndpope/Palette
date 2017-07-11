@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import IGListKit
 
 final class Palette: NSObject, NSCoding {
+    private static let colorsKey = "colors"
+    private static let imageURLKey = "imageURL"
+    private static let diffIdKey = "diffId"
+    
+    fileprivate var diffId: NSNumber!
+
     var colors: [UIColor]!
     var imageURL: String!
     
@@ -23,13 +30,15 @@ final class Palette: NSObject, NSCoding {
     
     required convenience init(coder decoder: NSCoder) {
         self.init()
-        self.colors = decoder.decodeObject(forKey: "colors") as! [UIColor]
-        self.imageURL = decoder.decodeObject(forKey: "imageURL") as! String
+        self.colors = decoder.decodeObject(forKey: Palette.colorsKey) as? [UIColor] ?? []
+        self.imageURL = decoder.decodeObject(forKey: Palette.imageURLKey) as? String ?? ""
+        self.diffId = decoder.decodeObject(forKey: Palette.diffIdKey) as? NSNumber ?? Date().timeIntervalSince1970 as NSNumber
     }
     
     func encode(with aCoder:NSCoder) {
-        aCoder.encode(self.colors, forKey: "colors")
-        aCoder.encode(self.imageURL, forKey: "imageURL")
+        aCoder.encode(self.colors, forKey: Palette.colorsKey)
+        aCoder.encode(self.imageURL, forKey: Palette.imageURLKey)
+        aCoder.encode(self.diffId, forKey: Palette.diffIdKey)
     }
 }
 
@@ -49,5 +58,18 @@ extension Palette {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
+    }
+}
+
+extension Palette: ListDiffable {
+    func diffIdentifier() -> NSObjectProtocol {
+        return self.diffId
+    }
+    
+    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
+        if let object = object as? Palette {
+            return colors == object.colors && imageURL == object.imageURL
+        }
+        return false
     }
 }

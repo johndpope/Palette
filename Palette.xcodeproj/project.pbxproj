@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		426D16666E2946DF1955A1C2 /* Pods_Palette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F68DC9EE919F1079D54A8C /* Pods_Palette.framework */; };
 		9200F0461E78DE8D00C10EBD /* InspirationEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9200F0451E78DE8D00C10EBD /* InspirationEmptyView.swift */; };
 		9200F04A1E7AC7B500C10EBD /* InspirationEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9200F0491E7AC7B500C10EBD /* InspirationEmptyView.xib */; };
 		92199A051EF719AA00C6CAB4 /* AppDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92199A041EF719AA00C6CAB4 /* AppDefaultsManager.swift */; };
@@ -42,13 +43,13 @@
 		928EA1E61C8760B500981E0D /* PaletteDetailCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928EA1E51C8760B500981E0D /* PaletteDetailCollectionFooterView.swift */; };
 		92B79B061E96C83800FEA387 /* PaletteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B79B051E96C83800FEA387 /* PaletteView.xib */; };
 		92B79B081E96C8E600FEA387 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B79B071E96C8E600FEA387 /* PaletteView.swift */; };
+		92BC24881F1021CD00DEB955 /* PaletteSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BC24871F1021CD00DEB955 /* PaletteSectionController.swift */; };
 		92DF9CF31E8C965000C5D1F4 /* PaletteDetailPeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF9CF21E8C965000C5D1F4 /* PaletteDetailPeekViewController.swift */; };
-		9B985148FE40243E3040916B /* Pods_Palette1_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74DE79569DCD3C5BA1A2FAB /* Pods_Palette1_0.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0DF00D24F397554849467930 /* Pods-Palette1.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palette1.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-Palette1.0/Pods-Palette1.0.release.xcconfig"; sourceTree = "<group>"; };
-		2B19CDBB61E4C9A00A0B538D /* Pods-Palette1.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palette1.0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Palette1.0/Pods-Palette1.0.debug.xcconfig"; sourceTree = "<group>"; };
+		11F68DC9EE919F1079D54A8C /* Pods_Palette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Palette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		807C98B671CD69E60EE1A87A /* Pods-Palette.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palette.release.xcconfig"; path = "Pods/Target Support Files/Pods-Palette/Pods-Palette.release.xcconfig"; sourceTree = "<group>"; };
 		9200F0451E78DE8D00C10EBD /* InspirationEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspirationEmptyView.swift; sourceTree = "<group>"; };
 		9200F0491E7AC7B500C10EBD /* InspirationEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InspirationEmptyView.xib; sourceTree = "<group>"; };
 		92199A041EF719AA00C6CAB4 /* AppDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDefaultsManager.swift; sourceTree = "<group>"; };
@@ -86,8 +87,9 @@
 		928EA1E51C8760B500981E0D /* PaletteDetailCollectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteDetailCollectionFooterView.swift; sourceTree = "<group>"; };
 		92B79B051E96C83800FEA387 /* PaletteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaletteView.xib; sourceTree = "<group>"; };
 		92B79B071E96C8E600FEA387 /* PaletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
+		92BC24871F1021CD00DEB955 /* PaletteSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteSectionController.swift; sourceTree = "<group>"; };
 		92DF9CF21E8C965000C5D1F4 /* PaletteDetailPeekViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteDetailPeekViewController.swift; sourceTree = "<group>"; };
-		E74DE79569DCD3C5BA1A2FAB /* Pods_Palette1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Palette1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6EF2D67EB2775A8C54A0150 /* Pods-Palette.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Palette.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Palette/Pods-Palette.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B985148FE40243E3040916B /* Pods_Palette1_0.framework in Frameworks */,
+				426D16666E2946DF1955A1C2 /* Pods_Palette.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,8 +107,8 @@
 		4CA7495D5A471B81F6D93F74 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2B19CDBB61E4C9A00A0B538D /* Pods-Palette1.0.debug.xcconfig */,
-				0DF00D24F397554849467930 /* Pods-Palette1.0.release.xcconfig */,
+				F6EF2D67EB2775A8C54A0150 /* Pods-Palette.debug.xcconfig */,
+				807C98B671CD69E60EE1A87A /* Pods-Palette.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -197,6 +199,7 @@
 				9273FA9E1C850DDB00EF3DDD /* PaletteCollectionViewCell.swift */,
 				924C058B1E816E780013759B /* PalettesEmptyView.swift */,
 				924C05891E80C78D0013759B /* PalettesEmptyView.xib */,
+				92BC24871F1021CD00DEB955 /* PaletteSectionController.swift */,
 			);
 			name = Palettes;
 			sourceTree = "<group>";
@@ -216,7 +219,7 @@
 		DCC83A9CE1A023DE19E89D63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E74DE79569DCD3C5BA1A2FAB /* Pods_Palette1_0.framework */,
+				11F68DC9EE919F1079D54A8C /* Pods_Palette.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -310,7 +313,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Palette1.0/Pods-Palette1.0-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Palette/Pods-Palette-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		38999E19FD503CAAC73FFCD1 /* [CP] Check Pods Manifest.lock */ = {
@@ -325,7 +328,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		83FADB96C62ECC760F7ECC62 /* [CP] Embed Pods Frameworks */ = {
@@ -340,7 +343,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Palette1.0/Pods-Palette1.0-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Palette/Pods-Palette-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -358,6 +361,7 @@
 				927F47F11EE068BF00F6334A /* NavigationTitleView.swift in Sources */,
 				926004491E664A260086F20F /* YPMagnifyingView.swift in Sources */,
 				9273FA3E1C7C08B000EF3DDD /* SwatchPickerViewController.swift in Sources */,
+				92BC24881F1021CD00DEB955 /* PaletteSectionController.swift in Sources */,
 				924C058C1E816E780013759B /* PalettesEmptyView.swift in Sources */,
 				9273FA6A1C7E31C400EF3DDD /* InspirationCollectionViewCell.swift in Sources */,
 				9273FA6C1C7F7DD500EF3DDD /* PalettesViewController.swift in Sources */,
@@ -504,7 +508,7 @@
 		};
 		9273FA4B1C7C08B000EF3DDD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B19CDBB61E4C9A00A0B538D /* Pods-Palette1.0.debug.xcconfig */;
+			baseConfigurationReference = F6EF2D67EB2775A8C54A0150 /* Pods-Palette.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -524,7 +528,7 @@
 		};
 		9273FA4C1C7C08B000EF3DDD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DF00D24F397554849467930 /* Pods-Palette1.0.release.xcconfig */;
+			baseConfigurationReference = 807C98B671CD69E60EE1A87A /* Pods-Palette.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
