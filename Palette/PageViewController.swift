@@ -62,11 +62,13 @@ final class PageViewController: UIPageViewController {
         navBar.layer.shadowOffset = CGSize(width: 0, height: 5)
         navBar.layer.shadowRadius = 0
         navBar.layer.shadowOpacity = 0.1
+        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.shadowImage = UIImage()
 
-        titleView.updateSize(to: view.bounds.width)
+        titleView.updateSize(to: view.bounds.width * 0.85)
         navigationItem.titleView = titleView
         navigationItem.titleView?.isUserInteractionEnabled = true
-        
+
         titleView.tappedAtIndex = { index in
             guard let currentVC = self.viewControllers?.first,
                 let currentIndex = self.viewControllersArray.index(of: currentVC) else { return }
