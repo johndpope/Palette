@@ -56,7 +56,7 @@ final class NavigationTitleView: UIView {
         default: offset = 0
         }
         
-        horizontalConstraint.constant = offset - self.frame.origin.x
+        horizontalConstraint.constant = offset// - (self.frame.origin.x / 2)
         
         UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseOut, animations: {
             self.highlightIcon(at: index)
