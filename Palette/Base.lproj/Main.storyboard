@@ -163,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nUY-Jg-20i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="673" y="1564"/>
+            <point key="canvasLocation" x="654" y="1564"/>
         </scene>
         <!--Palette Detail Peek View Controller-->
         <scene sceneID="Xwo-mf-Z4n">
@@ -198,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3l-8d-Wdd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1342" y="1455"/>
+            <point key="canvasLocation" x="1322" y="1454"/>
         </scene>
         <!--Swatch Picker View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -362,7 +362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-468" y="1564"/>
+            <point key="canvasLocation" x="-511" y="1563"/>
         </scene>
         <!-- -->
         <scene sceneID="2Ed-7H-UrH">
@@ -432,7 +432,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IvP-Dj-Doz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="672.79999999999995" y="803.74812593703155"/>
+            <point key="canvasLocation" x="652" y="804"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="Rjc-xR-Qs0">
@@ -442,7 +442,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W38-Pd-1bv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="890.39999999999998" y="37.331334332833585"/>
+            <point key="canvasLocation" x="257" y="99"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="fe6-kx-KRe">
@@ -535,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ya1-Il-GWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-810" y="804"/>
+            <point key="canvasLocation" x="-900" y="804"/>
         </scene>
         <!--Inspiration View Controller-->
         <scene sceneID="VhH-za-aNE">
@@ -640,7 +640,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HSl-gE-MnW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-48.799999999999997" y="37.331334332833585"/>
+            <point key="canvasLocation" x="-511" y="99"/>
         </scene>
     </scenes>
     <resources>
@@ -651,6 +651,6 @@
         <image name="swatch_picker" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="K3a-rN-1jg"/>
+        <segue reference="MyB-bl-qJg"/>
     </inferredMetricsTieBreakers>
 </document>
