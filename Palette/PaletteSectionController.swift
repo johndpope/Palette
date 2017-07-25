@@ -25,7 +25,7 @@ final class PaletteSectionController: ListSectionController {
         guard let context = collectionContext else { return .zero }
         return CGSize(
             width: context.containerSize.width - inset.left - inset.right,
-            height: 70
+            height: 60
         )
     }
     
