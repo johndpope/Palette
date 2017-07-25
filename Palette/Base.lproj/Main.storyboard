@@ -393,32 +393,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="335" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3T-1i-tsm">
-                                                    <rect key="frame" x="5" y="5" width="325" height="60"/>
-                                                    <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iGZ-Y4-b8a">
-                                                            <rect key="frame" x="0.0" y="0.0" width="325" height="60"/>
-                                                        </stackView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="iGZ-Y4-b8a" secondAttribute="bottom" id="13y-Xd-2O6"/>
-                                                        <constraint firstAttribute="trailing" secondItem="iGZ-Y4-b8a" secondAttribute="trailing" id="Ipe-Oj-xP6"/>
-                                                        <constraint firstItem="iGZ-Y4-b8a" firstAttribute="top" secondItem="r3T-1i-tsm" secondAttribute="top" id="nfy-BE-SvS"/>
-                                                        <constraint firstItem="iGZ-Y4-b8a" firstAttribute="leading" secondItem="r3T-1i-tsm" secondAttribute="leading" id="qWn-tt-qfk"/>
-                                                    </constraints>
-                                                </view>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iGZ-Y4-b8a">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="70"/>
+                                                </stackView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="r3T-1i-tsm" firstAttribute="top" secondItem="LEC-hi-ivQ" secondAttribute="top" constant="5" id="LRU-Fu-T9N"/>
-                                            <constraint firstAttribute="trailing" secondItem="r3T-1i-tsm" secondAttribute="trailing" constant="5" id="SLd-QF-Kgi"/>
-                                            <constraint firstAttribute="bottom" secondItem="r3T-1i-tsm" secondAttribute="bottom" constant="5" id="YV8-8K-dG2"/>
-                                            <constraint firstItem="r3T-1i-tsm" firstAttribute="leading" secondItem="LEC-hi-ivQ" secondAttribute="leading" constant="5" id="qta-mF-yFX"/>
+                                            <constraint firstAttribute="trailing" secondItem="iGZ-Y4-b8a" secondAttribute="trailing" id="Veu-Nc-IpM"/>
+                                            <constraint firstAttribute="bottom" secondItem="iGZ-Y4-b8a" secondAttribute="bottom" id="Y5l-IW-276"/>
+                                            <constraint firstItem="iGZ-Y4-b8a" firstAttribute="leading" secondItem="LEC-hi-ivQ" secondAttribute="leading" id="baf-2n-WMN"/>
+                                            <constraint firstItem="iGZ-Y4-b8a" firstAttribute="top" secondItem="LEC-hi-ivQ" secondAttribute="top" id="ix2-mu-q6k"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="containerView" destination="r3T-1i-tsm" id="Jn7-Ux-Kfx"/>
                                             <outlet property="paletteStackView" destination="iGZ-Y4-b8a" id="bdS-jc-1Ke"/>
                                             <segue destination="3AH-J5-fNk" kind="show" identifier="ShowPaletteDetail" id="HVC-KU-RUm"/>
                                         </connections>

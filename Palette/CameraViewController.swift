@@ -42,6 +42,8 @@ class CameraViewController: UIViewController {
             cameraManager.cameraOutputMode = .stillImage
             cameraManager.cameraOutputQuality = .high
             cameraManager.writeFilesToPhoneLibrary = false
+            cameraManager.shouldEnableTapToFocus = true
+            cameraManager.shouldEnablePinchToZoom = true
         }
     }
     
