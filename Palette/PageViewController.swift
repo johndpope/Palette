@@ -65,7 +65,6 @@ final class PageViewController: UIPageViewController {
         navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
 
-        titleView.updateSize(to: view.bounds.width * 0.85)
         navigationItem.titleView = titleView
         navigationItem.titleView?.isUserInteractionEnabled = true
 
