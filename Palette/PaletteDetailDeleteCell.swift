@@ -1,5 +1,5 @@
 //
-//  PaletteDetailCollectionFooterView.swift
+//  PaletteDetailDeleteCell.swift
 //  Palette1.0
 //
 //  Created by Alexander Mathers on 2016-03-02.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-final class PaletteDetailCollectionFooterView: UICollectionReusableView {
+final class PaletteDetailDeleteCell: UICollectionViewCell {
     @IBOutlet var containerView: UIView!
 }

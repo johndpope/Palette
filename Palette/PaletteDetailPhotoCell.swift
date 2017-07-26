@@ -1,14 +1,14 @@
 //
-//  PaletteDetailCollectionReusableView.swift
-//  Palette1.0
+//  PaletteDetailPhotoCell.swift
+//  Palette
 //
-//  Created by Alexander Mathers on 2016-03-01.
-//  Copyright © 2016 Malecks. All rights reserved.
+//  Created by Alex Mathers on 2017-07-26.
+//  Copyright © 2017 Malecks. All rights reserved.
 //
 
 import UIKit
 
-final class PaletteDetailCollectionReusableView: UICollectionReusableView {
+final class PaletteDetailPhotoCell: UICollectionViewCell {
     
     @IBOutlet private weak var containerView: UIView!
     private var paletteView: PaletteView?

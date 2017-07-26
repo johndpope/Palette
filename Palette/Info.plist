@@ -23,9 +23,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>PALette requires permission to use your camera, so you can create palettes from your photos. Fun!</string>
+	<string>Palette requires permission to use your camera, so you can create palettes from your awkward selfies. Cool pic bro!</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>PALette requires permission to create palettes from your saved photos, and save your palettes to your camera roll.</string>
+	<string>Palette requires permission to access your library. Don&apos;t worry, I can&apos;t see those selfies you thought you deleted.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -34,6 +34,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Palette requires permission to save photos to your library, so you can share them with all your friends. Or hide them away forever. Your call.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
