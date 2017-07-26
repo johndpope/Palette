@@ -21,7 +21,7 @@ class AppDefaultsManager {
     private static let detailPalettePageVisits = "detailPalettePageVisits"
     
     private static let dateOfLastReviewRequest = "dateOfLastReviewRequest"
-    
+    private static let maxCount = 100000
     
     init() {
         defaults = UserDefaults.standard
@@ -78,8 +78,9 @@ class AppDefaultsManager {
     }
     
     func userSavedPalette() {
-        defaults.set(savedPalettesCount, forKey: AppDefaultsManager.savedPalettesCountKey)
         defaults.set(true, forKey: AppDefaultsManager.savedPaletteThisSession)
+        guard savedPalettesCount < AppDefaultsManager.maxCount else { return }
+        defaults.set(savedPalettesCount + 1, forKey: AppDefaultsManager.savedPalettesCountKey)
     }
     
     func userVisited(page: page) {
@@ -92,6 +93,7 @@ class AppDefaultsManager {
         }
         
         let count = defaults.integer(forKey: pageKey)
+        guard count < AppDefaultsManager.maxCount else { return }
         defaults.set(count + 1, forKey: pageKey)
     }
     
