@@ -19,8 +19,7 @@ final class PageViewController: UIPageViewController {
     private let store = AppDefaultsManager()
     fileprivate var viewControllersArray: [UIViewController]!
     fileprivate let titleView: NavigationTitleView! = {
-        let view = NavigationTitleView.instanceFromNib() as! NavigationTitleView
-        return view
+        return NavigationTitleView.instanceFromNib()
     }()
     
     override func viewDidLoad() {

@@ -21,9 +21,9 @@ class InspirationViewController: UIViewController {
     fileprivate var photosArray: [FlikrPhoto] = []
     
     fileprivate lazy var emptyView: InspirationEmptyView = {
-        let view = InspirationEmptyView.instanceFromNib()
-        view?.translatesAutoresizingMaskIntoConstraints = false
-        return view as! InspirationEmptyView
+        let view = InspirationEmptyView.instanceFromNib()!
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     fileprivate lazy var refreshControl: UIRefreshControl = {

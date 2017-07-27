@@ -18,19 +18,23 @@ final class PaletteDetailPeekViewController: UIViewController {
     var deleteAction: (() -> ())?
     
     private lazy var paletteView: PaletteView = {
-        let view = PaletteView.instanceFromNib()
-        view?.translatesAutoresizingMaskIntoConstraints = false
-        return view as! PaletteView
+        let view = PaletteView.instanceFromNib()!
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     lazy var previewActions: [UIPreviewActionItem] = {
-        let shareAction = UIPreviewAction(title: NSLocalizedString("Share Palette", comment: ""), style: .default, handler: { (previewAction, viewController) -> Void in
-            self.shareAction?()
-        })
+        let shareAction = UIPreviewAction(
+            title:"Share Palette",
+            style: .default) { (previewAction, viewController) -> Void in
+                self.shareAction?()
+        }
         
-        let deleteAction = UIPreviewAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { (previewAction, viewController) -> Void in
-            self.deleteAction?()
-        })
+        let deleteAction = UIPreviewAction(
+            title: "Delete",
+            style: .destructive) { (previewAction, viewController) -> Void in
+                self.deleteAction?()
+        }
         
         return [shareAction, deleteAction]
     }()

@@ -23,7 +23,7 @@ class InspirationEmptyView: UIView {
         buttonAction?()
     }
     
-    class func instanceFromNib() -> UIView? {
+    class func instanceFromNib() -> InspirationEmptyView? {
         let nib = UINib(nibName: "InspirationEmptyView", bundle: nil).instantiate(withOwner: nil, options: nil)
         for view in nib {
             if let view = view as? InspirationEmptyView {

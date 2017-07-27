@@ -45,7 +45,7 @@ final class Palette: NSObject, NSCoding {
 
 extension Palette {
     func shareableImage() -> UIImage? {
-        guard let view = PaletteView.instanceFromNib() as? PaletteView else { return nil }
+        guard let view = PaletteView.instanceFromNib() else { return nil }
         view.frame = CGRect(x: 0, y: 0, width: 355, height: 415)
         view.update(with: self)
         

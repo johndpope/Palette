@@ -71,7 +71,7 @@ final class NavigationTitleView: UIView {
         }
     }
     
-    class func instanceFromNib() -> UIView? {
+    class func instanceFromNib() -> NavigationTitleView? {
         let nib = UINib(nibName: "NavigationTitleView", bundle: nil)
             .instantiate(withOwner: nil, options: nil)
         for view in nib {

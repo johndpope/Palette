@@ -29,7 +29,7 @@ final class PalettesEmptyView: UIView {
         inspirationButtonAction?()
     }
     
-    class func instanceFromNib() -> UIView? {
+    class func instanceFromNib() -> PalettesEmptyView? {
         let nib = UINib(nibName: "PalettesEmptyView", bundle: nil).instantiate(withOwner: nil, options: nil)
         for view in nib {
             if let view = view as? PalettesEmptyView {

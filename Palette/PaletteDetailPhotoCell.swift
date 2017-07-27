@@ -11,31 +11,29 @@ import UIKit
 final class PaletteDetailPhotoCell: UICollectionViewCell {
     
     @IBOutlet private weak var containerView: UIView!
-    private var paletteView: PaletteView?
+    private var paletteView: PaletteView!
     
     func setup(with palette: Palette) {
         containerView.layer.cornerRadius = 9
         containerView.clipsToBounds = true
         
-        paletteView = PaletteView.instanceFromNib() as? PaletteView
-        guard let view = paletteView else { return }
-        view.frame = containerView.frame
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        containerView.addSubview(view)
-        
+        paletteView = PaletteView.instanceFromNib()!
+        paletteView.frame = containerView.frame
+        paletteView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(paletteView)
+
         containerView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|[paletteView]|",
             options: NSLayoutFormatOptions(),
             metrics: nil,
-            views: ["paletteView" : view]))
+            views: ["paletteView" : paletteView]))
         
         containerView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|[paletteView]|",
             options: NSLayoutFormatOptions(),
             metrics: nil,
-            views: ["paletteView" : view]
+            views: ["paletteView" : paletteView]
         ))
-        view.update(with: palette)
+        paletteView.update(with: palette)
     }
 }

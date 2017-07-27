@@ -37,7 +37,7 @@ final class PaletteView: UIView {
         }
     }
     
-    class func instanceFromNib() -> UIView? {
+    class func instanceFromNib() -> PaletteView? {
         let nib = UINib(nibName: "PaletteView", bundle: nil).instantiate(withOwner: nil, options: nil)
         for view in nib {
             if let view = view as? PaletteView {

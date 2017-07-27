@@ -17,8 +17,7 @@ final class PalettesViewController: UIViewController {
     fileprivate var palettes: Array<Palette> = []
     
     let emptyView: PalettesEmptyView = {
-        let view = PalettesEmptyView.instanceFromNib()
-        return view as! PalettesEmptyView
+        return PalettesEmptyView.instanceFromNib()!
     }()
     
     lazy var adapter: ListAdapter = {
