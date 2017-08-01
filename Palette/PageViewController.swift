@@ -18,7 +18,7 @@ enum page: Int {
 final class PageViewController: UIPageViewController {
     private let store = AppDefaultsManager()
     fileprivate var viewControllersArray: [UIViewController]!
-    fileprivate let titleView: NavigationTitleView! = {
+    fileprivate lazy var titleView: NavigationTitleView! = {
         return NavigationTitleView.instanceFromNib()
     }()
     
@@ -63,10 +63,14 @@ final class PageViewController: UIPageViewController {
         navBar.layer.shadowOpacity = 0.1
         navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
+        
+        titleView.setNeedsLayout()
+        titleView.layoutIfNeeded()
 
         navigationItem.titleView = titleView
         navigationItem.titleView?.isUserInteractionEnabled = true
 
+        
         titleView.tappedAtIndex = { index in
             guard let currentVC = self.viewControllers?.first,
                 let currentIndex = self.viewControllersArray.index(of: currentVC) else { return }
