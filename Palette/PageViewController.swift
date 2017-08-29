@@ -17,10 +17,15 @@ enum page: Int {
 
 final class PageViewController: UIPageViewController {
     private let store = AppDefaultsManager()
-    fileprivate var viewControllersArray: [UIViewController]!
-    fileprivate lazy var titleView: NavigationTitleView! = {
-        return NavigationTitleView.instanceFromNib()
+    private var leftBarItem: UIBarButtonItem!
+    private var rightBarItem: UIBarButtonItem!
+    private var titleView: UIButton!
+    private lazy var indicatorView: NavigationIndicatorView = {
+        let view = NavigationIndicatorView.instanceFromNib()
+        view!.translatesAutoresizingMaskIntoConstraints = false
+        return view!
     }()
+    fileprivate var viewControllersArray: [UIViewController]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,8 +59,46 @@ final class PageViewController: UIPageViewController {
         }
         
         viewControllersArray = [cameraViewController, palettesViewController, inspirationViewController]
+        
+        view.addSubview(indicatorView)
+        view.addConstraint(NSLayoutConstraint(
+            item: indicatorView,
+            attribute: .leading,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: .leading,
+            multiplier: 1.0,
+            constant: 0.0
+        ))
+        view.addConstraint(NSLayoutConstraint(
+            item: indicatorView,
+            attribute: .trailing,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: .trailing,
+            multiplier: 1.0,
+            constant: 0.0
+        ))
+        view.addConstraint(NSLayoutConstraint(
+            item: indicatorView,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: .top,
+            multiplier: 1.0,
+            constant: 0.0
+        ))
+        view.addConstraint(NSLayoutConstraint(
+            item: indicatorView,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1.0,
+            constant: 5.0
+        ))
     }
-
+    
     private func setupNavigationBar() {
         guard let navBar = navigationController?.navigationBar else { return }
         navBar.layer.shadowOffset = CGSize(width: 0, height: 5)
@@ -64,35 +107,49 @@ final class PageViewController: UIPageViewController {
         navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
         
-        titleView.setNeedsLayout()
-        titleView.layoutIfNeeded()
-
-        navigationItem.titleView = titleView
-        navigationItem.titleView?.isUserInteractionEnabled = true
-
+        leftBarItem = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "ic_camera_alt").withRenderingMode(.alwaysTemplate),
+            style: .plain,
+            target: self,
+            action: #selector(tappedOnNavBarItem(sender:))
+        )
         
-        titleView.tappedAtIndex = { index in
-            guard let currentVC = self.viewControllers?.first,
-                let currentIndex = self.viewControllersArray.index(of: currentVC) else { return }
-            
-            let direction: UIPageViewControllerNavigationDirection = currentIndex < index ? .forward : .reverse
-            self.setViewControllers(
-                [self.viewControllersArray[index]],
-                direction: direction,
-                animated: true,
-                completion: { completed in
-                    self.titleView?.scroll(to: index)
-            })
-        }
+        rightBarItem = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "ic_photo").withRenderingMode(.alwaysTemplate),
+            style: .plain,
+            target: self,
+            action: #selector(tappedOnNavBarItem(sender:))
+        )
+        
+        titleView = UIButton(type: .system)
+        titleView.setImage(#imageLiteral(resourceName: "ic_palette"), for: .normal)
+        titleView.addTarget(self, action: #selector(tappedOnNavBarItem(sender:)), for: .touchUpInside)
+        
+        leftBarItem.tag = 0
+        titleView.tag = 1
+        rightBarItem.tag = 2
+        
+        navigationItem.setLeftBarButton(leftBarItem, animated: true)
+        navigationItem.setRightBarButton(rightBarItem, animated: true)
+        navigationItem.titleView = titleView
     }
     
-    func scroll(to page: page, direction: UIPageViewControllerNavigationDirection, savedPalette: Bool = false) {
+    @objc private func tappedOnNavBarItem(sender: UIView) {
+        guard let currentVC = self.viewControllers?.first,
+            let currentIndex = self.viewControllersArray.index(of: currentVC),
+            let page = page(rawValue: sender.tag) else { return }
+        
+        let direction: UIPageViewControllerNavigationDirection = currentIndex < sender.tag ? .forward : .reverse
+        scroll(to: page, direction: direction)
+    }
+    
+    private func scroll(to page: page, direction: UIPageViewControllerNavigationDirection, savedPalette: Bool = false) {
         self.setViewControllers([viewControllersArray[page.rawValue]],
                                 direction: direction,
                                 animated: true,
                                 completion: { complete in
                                     if complete {
-                                        self.titleView.scroll(to: page.rawValue)
+                                        self.highlightNavBarItem(at: page.rawValue)
                                         if savedPalette, let palettesViewController = self.viewControllersArray[page.rawValue] as? PalettesViewController {
                                             palettesViewController.scrollToTop()
                                             self.store.userSavedPalette()
@@ -100,13 +157,37 @@ final class PageViewController: UIPageViewController {
                                     }
         })
     }
+    
+    fileprivate func highlightNavBarItem(at index: Int) {
+        guard let page = page(rawValue: index),
+            let position = NavigationIndicatorView.position(rawValue: index) else { return }
+        UIView.animate(withDuration: 0.25, animations: {
+            switch page {
+            case .camera:
+                self.leftBarItem.tintColor = .black
+                self.titleView.tintColor = .lightGray
+                self.rightBarItem.tintColor = .lightGray
+            case .palettes:
+                self.leftBarItem.tintColor = .lightGray
+                self.titleView.tintColor = .black
+                self.rightBarItem.tintColor = .lightGray
+            case.inspiration:
+                self.leftBarItem.tintColor = .lightGray
+                self.titleView.tintColor = .lightGray
+                self.rightBarItem.tintColor = .black
+            default:
+                break
+            }
+        })
+        self.indicatorView.scroll(to: position)
+    }
 }
 
 extension PageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let index = viewControllersArray.index(of: viewController),
             index - 1 >= 0 else { return nil }
-
+        
         return viewControllersArray[index - 1]
     }
     
@@ -120,10 +201,10 @@ extension PageViewController: UIPageViewControllerDataSource {
 
 extension PageViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        guard let titleView = self.titleView,
-            let currentVC = viewControllers?.first,
+        guard let currentVC = viewControllers?.first,
             let currentIndex = viewControllersArray.index(of: currentVC) else { return }
         
-        titleView.scroll(to: currentIndex)
+        highlightNavBarItem(at: currentIndex)
     }
 }
+
