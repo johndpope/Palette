@@ -35,7 +35,8 @@ final class PalettesViewController: UIViewController {
             stretchToEdge: false
         )
         paletteCollectionView.contentInset.top = 20
-    
+        paletteCollectionView.alwaysBounceVertical = true
+        
         adapter.collectionView = paletteCollectionView
         adapter.dataSource = self
         setupView()
@@ -48,7 +49,7 @@ final class PalettesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         palettes = store.getPalettesArray()
-        adapter.reloadData()
+        adapter.reloadData(completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {

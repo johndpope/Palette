@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import IGListKit
 
 final class PaletteDetailViewController: UIViewController {

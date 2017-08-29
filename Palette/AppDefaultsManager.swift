@@ -40,7 +40,7 @@ class AppDefaultsManager {
     
     var didSavePaletteThisSession: Bool {
         get {
-            return defaults.bool(forKey: AppDefaultsManager.savedPalettesCountKey)
+            return defaults.bool(forKey: AppDefaultsManager.savedPaletteThisSession)
         }
     }
     
