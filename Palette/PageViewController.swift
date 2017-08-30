@@ -168,24 +168,28 @@ final class PageViewController: UIPageViewController {
     fileprivate func highlightNavBarItem(at index: Int) {
         guard let page = page(rawValue: index),
             let position = NavigationIndicatorView.position(rawValue: index) else { return }
-        UIView.animate(withDuration: 0.25, animations: {
-            switch page {
-            case .camera:
-                self.leftBarItem.tintColor = .black
-                self.titleView.titleButton.tintColor = .lightGray
-                self.rightBarItem.tintColor = .lightGray
-            case .palettes:
-                self.leftBarItem.tintColor = .lightGray
-                self.titleView.titleButton.tintColor = .black
-                self.rightBarItem.tintColor = .lightGray
-            case.inspiration:
-                self.leftBarItem.tintColor = .lightGray
-                self.titleView.titleButton.tintColor = .lightGray
-                self.rightBarItem.tintColor = .black
-            default:
-                break
-            }
-        })
+        UIView.animate(withDuration: 0.25,
+                       delay: 0.0,
+                       options: .curveEaseInOut,
+                       animations: {
+                        switch page {
+                        case .camera:
+                            self.leftBarItem.tintColor = .black
+                            self.titleView.titleButton.tintColor = .lightGray
+                            self.rightBarItem.tintColor = .lightGray
+                        case .palettes:
+                            self.leftBarItem.tintColor = .lightGray
+                            self.titleView.titleButton.tintColor = .black
+                            self.rightBarItem.tintColor = .lightGray
+                        case.inspiration:
+                            self.leftBarItem.tintColor = .lightGray
+                            self.titleView.titleButton.tintColor = .lightGray
+                            self.rightBarItem.tintColor = .black
+                        default:
+                            break
+                        }
+        },
+                       completion: nil)
         self.indicatorView.scroll(to: position)
     }
 }

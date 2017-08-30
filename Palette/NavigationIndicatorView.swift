@@ -43,10 +43,16 @@ final class NavigationIndicatorView: UIView {
         horizontalConstraint.constant = offset
         widthConstraint.constant = width
         
-        UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseOut, animations: {
-            self.setNeedsLayout()
-            self.layoutIfNeeded()
-        }, completion: nil)
+        UIView.animate(withDuration: 0.25,
+                       delay: 0.0,
+                       usingSpringWithDamping: 0.8,
+                       initialSpringVelocity: 0.0,
+                       options: .curveEaseIn,
+                       animations: {
+                        self.setNeedsLayout()
+                        self.layoutIfNeeded()
+        },
+                       completion: nil)
     }
     
     class func instanceFromNib() -> NavigationIndicatorView? {
