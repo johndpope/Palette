@@ -17,9 +17,34 @@ enum page: Int {
 
 final class PageViewController: UIPageViewController {
     private let store = AppDefaultsManager()
-    private var leftBarItem: UIBarButtonItem!
-    private var rightBarItem: UIBarButtonItem!
-    private var titleView: UIButton!
+    private lazy var leftBarItem: UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "ic_camera_alt").withRenderingMode(.alwaysTemplate),
+            style: .plain,
+            target: self,
+            action: #selector(tappedOnNavBarItem(sender:))
+        )
+        button.tag = 0
+        return button
+    }()
+    
+    private lazy var rightBarItem: UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "ic_photo").withRenderingMode(.alwaysTemplate),
+            style: .plain,
+            target: self,
+            action: #selector(tappedOnNavBarItem(sender:))
+        )
+        button.tag = 2
+        return button
+    }()
+    
+    private lazy var titleView: NavigationCenterTitleView = {
+        let view = NavigationCenterTitleView.instanceFromNib()
+        view!.tag = 1
+        return view!
+    }()
+    
     private lazy var indicatorView: NavigationIndicatorView = {
         let view = NavigationIndicatorView.instanceFromNib()
         view!.translatesAutoresizingMaskIntoConstraints = false
@@ -107,27 +132,9 @@ final class PageViewController: UIPageViewController {
         navBar.setBackgroundImage(UIImage(), for: .default)
         navBar.shadowImage = UIImage()
         
-        leftBarItem = UIBarButtonItem(
-            image: #imageLiteral(resourceName: "ic_camera_alt").withRenderingMode(.alwaysTemplate),
-            style: .plain,
-            target: self,
-            action: #selector(tappedOnNavBarItem(sender:))
-        )
-        
-        rightBarItem = UIBarButtonItem(
-            image: #imageLiteral(resourceName: "ic_photo").withRenderingMode(.alwaysTemplate),
-            style: .plain,
-            target: self,
-            action: #selector(tappedOnNavBarItem(sender:))
-        )
-        
-        titleView = UIButton(type: .system)
-        titleView.setImage(#imageLiteral(resourceName: "ic_palette"), for: .normal)
-        titleView.addTarget(self, action: #selector(tappedOnNavBarItem(sender:)), for: .touchUpInside)
-        
-        leftBarItem.tag = 0
-        titleView.tag = 1
-        rightBarItem.tag = 2
+        titleView.titleButtonAction = {
+            self.tappedOnNavBarItem(sender: self.titleView)
+        }
         
         navigationItem.setLeftBarButton(leftBarItem, animated: true)
         navigationItem.setRightBarButton(rightBarItem, animated: true)
@@ -165,15 +172,15 @@ final class PageViewController: UIPageViewController {
             switch page {
             case .camera:
                 self.leftBarItem.tintColor = .black
-                self.titleView.tintColor = .lightGray
+                self.titleView.titleButton.tintColor = .lightGray
                 self.rightBarItem.tintColor = .lightGray
             case .palettes:
                 self.leftBarItem.tintColor = .lightGray
-                self.titleView.tintColor = .black
+                self.titleView.titleButton.tintColor = .black
                 self.rightBarItem.tintColor = .lightGray
             case.inspiration:
                 self.leftBarItem.tintColor = .lightGray
-                self.titleView.tintColor = .lightGray
+                self.titleView.titleButton.tintColor = .lightGray
                 self.rightBarItem.tintColor = .black
             default:
                 break

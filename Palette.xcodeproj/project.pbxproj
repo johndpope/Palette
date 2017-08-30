@@ -43,6 +43,8 @@
 		928EA1E61C8760B500981E0D /* PaletteDetailDeleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928EA1E51C8760B500981E0D /* PaletteDetailDeleteCell.swift */; };
 		92936D641F5622AB00B07953 /* NavigationIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92936D631F5622AB00B07953 /* NavigationIndicatorView.swift */; };
 		92936D661F5623EE00B07953 /* NavigationIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92936D651F5623EE00B07953 /* NavigationIndicatorView.xib */; };
+		92ABAA861F5708FE008DA42A /* NavigationCenterTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92ABAA851F5708FE008DA42A /* NavigationCenterTitleView.xib */; };
+		92ABAA881F570994008DA42A /* NavigationCenterTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ABAA871F570994008DA42A /* NavigationCenterTitleView.swift */; };
 		92B463EB1F292F62000A41E3 /* PaletteDetailPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B463EA1F292F62000A41E3 /* PaletteDetailPhotoCell.swift */; };
 		92B79B061E96C83800FEA387 /* PaletteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92B79B051E96C83800FEA387 /* PaletteView.xib */; };
 		92B79B081E96C8E600FEA387 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B79B071E96C8E600FEA387 /* PaletteView.swift */; };
@@ -90,6 +92,8 @@
 		928EA1E51C8760B500981E0D /* PaletteDetailDeleteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteDetailDeleteCell.swift; sourceTree = "<group>"; };
 		92936D631F5622AB00B07953 /* NavigationIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationIndicatorView.swift; sourceTree = "<group>"; };
 		92936D651F5623EE00B07953 /* NavigationIndicatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationIndicatorView.xib; sourceTree = "<group>"; };
+		92ABAA851F5708FE008DA42A /* NavigationCenterTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationCenterTitleView.xib; sourceTree = "<group>"; };
+		92ABAA871F570994008DA42A /* NavigationCenterTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCenterTitleView.swift; sourceTree = "<group>"; };
 		92B463EA1F292F62000A41E3 /* PaletteDetailPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDetailPhotoCell.swift; sourceTree = "<group>"; };
 		92B79B051E96C83800FEA387 /* PaletteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaletteView.xib; sourceTree = "<group>"; };
 		92B79B071E96C8E600FEA387 /* PaletteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				92199A041EF719AA00C6CAB4 /* AppDefaultsManager.swift */,
 				9273FA9C1C84E60000EF3DDD /* Palette.swift */,
 				9273FA9A1C84BA1A00EF3DDD /* PageViewController.swift */,
+				92ABAA851F5708FE008DA42A /* NavigationCenterTitleView.xib */,
+				92ABAA871F570994008DA42A /* NavigationCenterTitleView.swift */,
 				92936D631F5622AB00B07953 /* NavigationIndicatorView.swift */,
 				92936D651F5623EE00B07953 /* NavigationIndicatorView.xib */,
 				927F47F01EE068BF00F6334A /* NavigationTitleView.swift */,
@@ -300,6 +306,7 @@
 				92B79B061E96C83800FEA387 /* PaletteView.xib in Resources */,
 				924C058A1E80C78D0013759B /* PalettesEmptyView.xib in Resources */,
 				9273FA461C7C08B000EF3DDD /* LaunchScreen.storyboard in Resources */,
+				92ABAA861F5708FE008DA42A /* NavigationCenterTitleView.xib in Resources */,
 				9273FA431C7C08B000EF3DDD /* Assets.xcassets in Resources */,
 				92936D661F5623EE00B07953 /* NavigationIndicatorView.xib in Resources */,
 				9200F04A1E7AC7B500C10EBD /* InspirationEmptyView.xib in Resources */,
@@ -387,6 +394,7 @@
 				92DF9CF31E8C965000C5D1F4 /* PaletteDetailPeekViewController.swift in Sources */,
 				9273FA9F1C850DDB00EF3DDD /* PaletteCollectionViewCell.swift in Sources */,
 				9273FA9D1C84E60000EF3DDD /* Palette.swift in Sources */,
+				92ABAA881F570994008DA42A /* NavigationCenterTitleView.swift in Sources */,
 				9273FA6E1C7F88DD00EF3DDD /* BackgroundImage.swift in Sources */,
 				9273FA3C1C7C08B000EF3DDD /* AppDelegate.swift in Sources */,
 				9273FAA11C860A3400EF3DDD /* PaletteDetailViewController.swift in Sources */,
