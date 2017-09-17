@@ -11,6 +11,7 @@ import UIKit
 final class PalettesEmptyView: UIView {
 
     @IBOutlet private weak var containerView: UIView!
+    @IBOutlet weak var titleImageView: UIImageView!
     
     var cameraButtonAction: (() -> ())?
     var inspirationButtonAction: (() -> ())?
@@ -18,6 +19,7 @@ final class PalettesEmptyView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         containerView.layer.cornerRadius = 9
+        titleImageView.layer.cornerRadius = 9
     }
 
     @IBAction private func didTapCameraButton() {

@@ -51,8 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func setupNavigationBars() {
         if let font = UIFont(name: "Menlo", size: 16.0) {
-            UINavigationBar.appearance().titleTextAttributes = [ NSFontAttributeName: font]
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
+            UINavigationBar.appearance().titleTextAttributes = [ NSAttributedStringKey.font: font]
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
         }
         UINavigationBar.appearance().tintColor = .black
     }
