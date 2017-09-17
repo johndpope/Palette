@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="26y-JL-bl8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="26y-JL-bl8">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -437,6 +437,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="gPr-Yx-ULQ" firstAttribute="leading" secondItem="osE-Aj-XDb" secondAttribute="leading" id="3Ax-mF-xPW"/>
                             <constraint firstItem="gPr-Yx-ULQ" firstAttribute="top" secondItem="osE-Aj-XDb" secondAttribute="top" id="adD-Yk-3y5"/>
@@ -623,6 +624,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="GRI-WT-OTB" firstAttribute="top" secondItem="apH-kN-26a" secondAttribute="bottom" id="4Lm-eU-rDD"/>
                             <constraint firstItem="apH-kN-26a" firstAttribute="top" secondItem="06i-ZZ-MN7" secondAttribute="top" id="97g-qO-Yr7"/>
@@ -670,6 +672,6 @@
         <image name="swatch_picker" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="K3a-rN-1jg"/>
+        <segue reference="MyB-bl-qJg"/>
     </inferredMetricsTieBreakers>
 </document>
