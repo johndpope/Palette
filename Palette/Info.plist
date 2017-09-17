@@ -15,17 +15,19 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.2</string>
+	<string>1.3.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>7</string>
+	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Palette requires permission to use your camera, so you can create palettes from your awkward selfies. Cool pic bro!</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Palette requires permission to save photos to your library, so you can share them with all your friends. Or hide them away forever. Your call.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Palette requires permission to access your library. Don&apos;t worry, I can&apos;t see those selfies you thought you deleted.</string>
+	<string>Palette requires permission to access your library. Don't worry, I can't see those selfies you thought you deleted.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -34,8 +36,6 @@
 	<array>
 		<string>armv7</string>
 	</array>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Palette requires permission to save photos to your library, so you can share them with all your friends. Or hide them away forever. Your call.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
