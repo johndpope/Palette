@@ -12,6 +12,7 @@ import MBProgressHUD
 import DZNEmptyDataSet
 
 class InspirationViewController: UIViewController {
+    private let store = AppDefaultsManager()
     private let flikrAPIManager = FlikrAPIManager()
     private let SDDownloader = SDWebImageDownloader()
     private var progressHUD = MBProgressHUD()
@@ -29,7 +30,6 @@ class InspirationViewController: UIViewController {
         return UIRefreshControl()
     }()
     
-    @IBOutlet private var headerView: UIView!
     @IBOutlet private var collectionView: UICollectionView!
     
     var didSavePalette: (() -> ())?
@@ -40,6 +40,11 @@ class InspirationViewController: UIViewController {
         collectionView.emptyDataSetDelegate = self
         setupView()
         loadPhotos()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        store.userVisited(page: .inspiration)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -58,10 +63,6 @@ class InspirationViewController: UIViewController {
         emptyView.buttonAction = {
             self.loadPhotos()
         }
-        
-        headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        headerView.layer.shadowRadius = 0
-        headerView.layer.shadowOpacity = 0.1
         
         progressHUD.frame = view.frame
         progressHUD.graceTime = 0.5

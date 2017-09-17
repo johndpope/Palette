@@ -11,13 +11,13 @@ import CameraManager
 
 class CameraViewController: UIViewController {
     
-    @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var flashButton: UIButton!
     @IBOutlet private weak var galleryButton: UIButton!
     @IBOutlet private weak var shutterButton: UIButton!
     @IBOutlet private weak var cameraView: UIView!
     @IBOutlet private weak var buttonContainerView: UIView!
     
+    private let store = AppDefaultsManager()
     private let cameraManager = CameraManager()
     private let picker = UIImagePickerController()
     
@@ -30,6 +30,11 @@ class CameraViewController: UIViewController {
         setupCamera()
         setupView()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        store.userVisited(page: .camera)
+    }
 
     private func setupCamera() {
         if cameraManager.addPreviewLayerToView(self.cameraView) == .ready {
@@ -37,14 +42,12 @@ class CameraViewController: UIViewController {
             cameraManager.cameraOutputMode = .stillImage
             cameraManager.cameraOutputQuality = .high
             cameraManager.writeFilesToPhoneLibrary = false
+            cameraManager.shouldEnableTapToFocus = true
+            cameraManager.shouldEnablePinchToZoom = true
         }
     }
     
     private func setupView() {
-        headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        headerView.layer.shadowRadius = 0
-        headerView.layer.shadowOpacity = 0.1
-        
         buttonContainerView.layer.cornerRadius = 9
         
         flashButton.layer.cornerRadius = 3

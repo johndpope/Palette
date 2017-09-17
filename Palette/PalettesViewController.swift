@@ -7,17 +7,22 @@
 //
 
 import UIKit
-import DZNEmptyDataSet
+import StoreKit
+import IGListKit
 
 final class PalettesViewController: UIViewController {
-    fileprivate var palettes: Array<Palette> = []
+    private let store = AppDefaultsManager()
+
     @IBOutlet fileprivate var paletteCollectionView: UICollectionView!
-    @IBOutlet private var headerView: UIView!
+    fileprivate var palettes: Array<Palette> = []
     
-    fileprivate lazy var emptyView: PalettesEmptyView = {
+    let emptyView: PalettesEmptyView = {
         let view = PalettesEmptyView.instanceFromNib()
-        view?.translatesAutoresizingMaskIntoConstraints = false
         return view as! PalettesEmptyView
+    }()
+    
+    lazy var adapter: ListAdapter = {
+        return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
     }()
     
     var showCameraView: (() -> ())?
@@ -25,8 +30,15 @@ final class PalettesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        paletteCollectionView.emptyDataSetSource = self
-        paletteCollectionView.emptyDataSetDelegate = self
+        paletteCollectionView.collectionViewLayout = ListCollectionViewLayout(
+            stickyHeaders: false,
+            topContentInset: 0.0,
+            stretchToEdge: false
+        )
+        paletteCollectionView.contentInset.top = 20
+    
+        adapter.collectionView = paletteCollectionView
+        adapter.dataSource = self
         setupView()
         
         if traitCollection.forceTouchCapability == .available {
@@ -36,8 +48,14 @@ final class PalettesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setUpPalettes()
-        paletteCollectionView.reloadData()
+        palettes = store.getPalettesArray()
+        adapter.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        store.userVisited(page: .palettes)
+        requestReview()
     }
     
     private func setupView () {
@@ -47,22 +65,6 @@ final class PalettesViewController: UIViewController {
         
         emptyView.inspirationButtonAction = {
             self.showInspirationView?()
-        }
-        
-        headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        headerView.layer.shadowRadius = 0
-        headerView.layer.shadowOpacity = 0.1
-    }
-    
-    private func setUpPalettes () {
-        palettes = []
-        let defaults = UserDefaults.standard
-        if let encodedArray = defaults.object(forKey: "palettesArray") as? [Data] {
-            for data in encodedArray {
-                if let palette: Palette = NSKeyedUnarchiver.unarchiveObject(with: data) as? Palette {
-                    palettes.append(palette)
-                }
-            }
         }
     }
     
@@ -74,8 +76,8 @@ final class PalettesViewController: UIViewController {
                         return
                 }
                 
-                dvc.palette = palettes[indexPath.row]
-                dvc.paletteIndex = indexPath.row
+                dvc.palette = palettes[indexPath.section]
+                dvc.paletteIndex = indexPath.section
             }
         }
     }
@@ -105,58 +107,51 @@ final class PalettesViewController: UIViewController {
             encodedArray.remove(at: index)
             defaults.set(encodedArray, forKey: "palettesArray")
         }
+    }
+    
+    private func requestReview() {
+        guard store.detailPalettePageVisits != 0,
+            store.didSavePaletteThisSession,
+            #available(iOS 10.3, *) else { return }
         
-        defaults.synchronize()
+        if let lastRequest = store.dateOfLastReviewRequest {
+            let interval = 60.0 * 60.0 * 24.0 * 7.0 //1 Week
+            let now = Date()
+            
+            guard now.timeIntervalSince(lastRequest as Date) >= interval else { return }
+        }
+        
+        SKStoreReviewController.requestReview()
+        store.requestedReview()
     }
 }
 
-extension PalettesViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return palettes.count
+extension PalettesViewController: ListAdapterDataSource {
+    func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
+        return palettes
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PaletteCell", for: indexPath) as! PaletteCollectionViewCell
-        cell.layer.cornerRadius = 9
-        cell.setup(with: palettes[indexPath.row])
-        return cell
+    func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
+        return PaletteSectionController()
     }
-}
-
-extension PalettesViewController: UICollectionViewDelegate {
     
-}
-
-extension PalettesViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let flowLayout: UICollectionViewFlowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let availableWidthForCells: CGFloat = collectionView.frame.width - flowLayout.sectionInset.left - flowLayout.sectionInset.right - flowLayout.minimumInteritemSpacing
-        let itemSize = CGSize(width: availableWidthForCells, height: flowLayout.itemSize.height)
-        return itemSize
-    }
-}
-
-extension PalettesViewController: DZNEmptyDataSetSource {
-    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+    func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return emptyView
     }
 }
 
-extension PalettesViewController: DZNEmptyDataSetDelegate {
-    
-}
-
 extension PalettesViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
         guard let indexPath = paletteCollectionView.indexPathForItem(at: paletteCollectionView.convert(location, from: view)),
             let cell = paletteCollectionView.cellForItem(at: indexPath),
             let viewController = storyboard?.instantiateViewController(withIdentifier: "PaletteDetailPeekViewController") as? PaletteDetailPeekViewController else { return nil }
         
-        viewController.palette = palettes[indexPath.row]
-        viewController.paletteIndex = indexPath.row
+        viewController.palette = palettes[indexPath.section]
+        viewController.paletteIndex = indexPath.section
         
         viewController.shareAction = {
-            guard let snapshot = self.palettes[indexPath.row].shareableImage() else { return }
+            guard let snapshot = self.palettes[indexPath.section].shareableImage() else { return }
             let activityVC = UIActivityViewController(activityItems: [snapshot], applicationActivities: nil)
             self.present(activityVC, animated: true, completion: nil)
         }
@@ -178,12 +173,9 @@ extension PalettesViewController: UIViewControllerPreviewingDelegate {
                 title: "Delete",
                 style: .destructive,
                 handler: { action in
-                    self.deletePalette(palette: self.palettes[indexPath.row], at: indexPath.row)
-                    self.palettes.remove(at: indexPath.row)
-                    self.paletteCollectionView.deleteItems(at: [indexPath])
-                    if self.palettes.count == 0 {
-                        self.paletteCollectionView.reloadData()
-                    }
+                    self.deletePalette(palette: self.palettes[indexPath.section], at: indexPath.section)
+                    self.palettes.remove(at: indexPath.section)
+                    self.adapter.performUpdates(animated: true)
                     
                     self.dismiss(animated: true, completion: nil)
             }))
