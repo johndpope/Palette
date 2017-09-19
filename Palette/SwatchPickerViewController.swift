@@ -11,18 +11,18 @@ import UIKit
 class SwatchPickerViewController: UIViewController {
     
     var mainImage: UIImage?
-    @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var swatchStackView: UIStackView!
     @IBOutlet private weak var magnifyingView: YPMagnifyingView!
     @IBOutlet private weak var swatchPickerView: SwatchPickerView!
     @IBOutlet private weak var addSwatchButton: UIButton!
     @IBOutlet private weak var saveButton: UIButton!
-    
+
     fileprivate var swatchArray = [UIColor]()
     fileprivate var mag: YPMagnifyingGlass!
     
     var didSavePalette: (() -> ())?
+    var interactor: Interactor?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +30,6 @@ class SwatchPickerViewController: UIViewController {
     }
     
     private func setUpViews() {
-        headerView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        headerView.layer.shadowRadius = 0
-        headerView.layer.shadowOpacity = 0.1
-        
         mag = YPMagnifyingGlass(frame: CGRect(
             x: magnifyingView.frame.origin.x,
             y: magnifyingView.frame.origin.y,
@@ -78,10 +74,59 @@ class SwatchPickerViewController: UIViewController {
             subview!.removeFromSuperview()
         }
         saveButton.isEnabled = swatchArray.count > 0
+    } 
+    
+    @IBAction func didPan(_ sender: UIPanGestureRecognizer) {
+        guard let interactor = interactor else { return }
+
+        let percentThreshold: CGFloat = 0.3
+        let translation = sender.translation(in: view)
+        let verticalMovement = translation.y / view.bounds.height
+        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+        let downwardMovementPercent = fminf(downwardMovement, 1.0)
+        let progress = CGFloat(downwardMovementPercent)
+        
+        switch sender.state {
+        case .began:
+            interactor.hasStarted = true
+            dismiss(animated: true, completion: nil)
+        case .changed:
+            interactor.shouldFinish = progress > percentThreshold
+            interactor.update(progress)
+        case .cancelled:
+            interactor.hasStarted = false
+            interactor.cancel()
+        case .ended:
+            interactor.hasStarted = false
+            interactor.shouldFinish ? interactor.finish() : interactor.cancel()
+        default:
+            break
+        }
     }
     
-    @IBAction private func cancelButton(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
+    @IBAction private func didTapOutsideContainer(_ sender: Any) {
+        self.confirmDismiss()
+    }
+    
+    private func confirmDismiss() {
+        if self.swatchArray.count > 0 {
+            let alertController = UIAlertController(
+                title: "Discard this Palette?",
+                message: nil,
+                preferredStyle: .alert
+            )
+            
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancel)
+            
+            let confirm = UIAlertAction(title: "OK", style: .default, handler: { action in
+                self.dismiss(animated: true, completion: nil)
+            })
+            alertController.addAction(confirm)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction private func saveButton(_ sender: AnyObject) {

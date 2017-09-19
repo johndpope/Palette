@@ -13,6 +13,8 @@
 		92199A051EF719AA00C6CAB4 /* AppDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92199A041EF719AA00C6CAB4 /* AppDefaultsManager.swift */; };
 		924C058A1E80C78D0013759B /* PalettesEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 924C05891E80C78D0013759B /* PalettesEmptyView.xib */; };
 		924C058C1E816E780013759B /* PalettesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924C058B1E816E780013759B /* PalettesEmptyView.swift */; };
+		925824D21F7154A500FC3606 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925824D11F7154A500FC3606 /* DismissAnimator.swift */; };
+		925824D41F71600A00FC3606 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925824D31F71600A00FC3606 /* Interactor.swift */; };
 		926004481E664A260086F20F /* YPMagnifyingGlass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926004461E664A260086F20F /* YPMagnifyingGlass.swift */; };
 		926004491E664A260086F20F /* YPMagnifyingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926004471E664A260086F20F /* YPMagnifyingView.swift */; };
 		9273FA3C1C7C08B000EF3DDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9273FA3B1C7C08B000EF3DDD /* AppDelegate.swift */; };
@@ -60,6 +62,8 @@
 		92199A041EF719AA00C6CAB4 /* AppDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDefaultsManager.swift; sourceTree = "<group>"; };
 		924C05891E80C78D0013759B /* PalettesEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PalettesEmptyView.xib; sourceTree = "<group>"; };
 		924C058B1E816E780013759B /* PalettesEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PalettesEmptyView.swift; sourceTree = "<group>"; };
+		925824D11F7154A500FC3606 /* DismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
+		925824D31F71600A00FC3606 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		926004461E664A260086F20F /* YPMagnifyingGlass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPMagnifyingGlass.swift; sourceTree = "<group>"; };
 		926004471E664A260086F20F /* YPMagnifyingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPMagnifyingView.swift; sourceTree = "<group>"; };
 		9273FA381C7C08B000EF3DDD /* Palette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palette.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +135,30 @@
 			name = Camera;
 			sourceTree = "<group>";
 		};
+		925824CF1F714C9100FC3606 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				9273FA9A1C84BA1A00EF3DDD /* PageViewController.swift */,
+				92ABAA871F570994008DA42A /* NavigationCenterTitleView.swift */,
+				92ABAA851F5708FE008DA42A /* NavigationCenterTitleView.xib */,
+				92936D631F5622AB00B07953 /* NavigationIndicatorView.swift */,
+				92936D651F5623EE00B07953 /* NavigationIndicatorView.xib */,
+				927F47F01EE068BF00F6334A /* NavigationTitleView.swift */,
+				927F47EE1EE0681600F6334A /* NavigationTitleView.xib */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
+		925824D01F714CC000FC3606 /* Palette */ = {
+			isa = PBXGroup;
+			children = (
+				9273FA9C1C84E60000EF3DDD /* Palette.swift */,
+				92B79B071E96C8E600FEA387 /* PaletteView.swift */,
+				92B79B051E96C83800FEA387 /* PaletteView.xib */,
+			);
+			name = Palette;
+			sourceTree = "<group>";
+		};
 		9273FA2F1C7C08B000EF3DDD = {
 			isa = PBXGroup;
 			children = (
@@ -154,18 +182,12 @@
 			children = (
 				9273FA3B1C7C08B000EF3DDD /* AppDelegate.swift */,
 				92199A041EF719AA00C6CAB4 /* AppDefaultsManager.swift */,
-				9273FA9C1C84E60000EF3DDD /* Palette.swift */,
-				9273FA9A1C84BA1A00EF3DDD /* PageViewController.swift */,
-				92ABAA871F570994008DA42A /* NavigationCenterTitleView.swift */,
-				92ABAA851F5708FE008DA42A /* NavigationCenterTitleView.xib */,
-				92936D631F5622AB00B07953 /* NavigationIndicatorView.swift */,
-				92936D651F5623EE00B07953 /* NavigationIndicatorView.xib */,
-				927F47F01EE068BF00F6334A /* NavigationTitleView.swift */,
-				927F47EE1EE0681600F6334A /* NavigationTitleView.xib */,
-				92B79B071E96C8E600FEA387 /* PaletteView.swift */,
-				92B79B051E96C83800FEA387 /* PaletteView.xib */,
-				9273FA931C81144C00EF3DDD /* Palettes */,
-				928EA1E71C87613B00981E0D /* DetailView */,
+				925824D11F7154A500FC3606 /* DismissAnimator.swift */,
+				925824D31F71600A00FC3606 /* Interactor.swift */,
+				925824CF1F714C9100FC3606 /* Navigation */,
+				925824D01F714CC000FC3606 /* Palette */,
+				9273FA931C81144C00EF3DDD /* Palettes Collection View */,
+				928EA1E71C87613B00981E0D /* Detail View */,
 				924C058D1E84803A0013759B /* Camera */,
 				9273FA661C7E16AB00EF3DDD /* Inspiration */,
 				9273FA611C7E105300EF3DDD /* SwatchPicker */,
@@ -205,7 +227,7 @@
 			name = Inspiration;
 			sourceTree = "<group>";
 		};
-		9273FA931C81144C00EF3DDD /* Palettes */ = {
+		9273FA931C81144C00EF3DDD /* Palettes Collection View */ = {
 			isa = PBXGroup;
 			children = (
 				9273FA6B1C7F7DD500EF3DDD /* PalettesViewController.swift */,
@@ -215,10 +237,10 @@
 				924C05891E80C78D0013759B /* PalettesEmptyView.xib */,
 				92BC24871F1021CD00DEB955 /* PaletteSectionController.swift */,
 			);
-			name = Palettes;
+			name = "Palettes Collection View";
 			sourceTree = "<group>";
 		};
-		928EA1E71C87613B00981E0D /* DetailView */ = {
+		928EA1E71C87613B00981E0D /* Detail View */ = {
 			isa = PBXGroup;
 			children = (
 				9273FAA01C860A3400EF3DDD /* PaletteDetailViewController.swift */,
@@ -228,7 +250,7 @@
 				928D39691F2908AB0062E65E /* PaletteDetailSectionController.swift */,
 				92B463EA1F292F62000A41E3 /* PaletteDetailPhotoCell.swift */,
 			);
-			name = DetailView;
+			name = "Detail View";
 			sourceTree = "<group>";
 		};
 		DCC83A9CE1A023DE19E89D63 /* Frameworks */ = {
@@ -382,7 +404,9 @@
 				92BC24881F1021CD00DEB955 /* PaletteSectionController.swift in Sources */,
 				924C058C1E816E780013759B /* PalettesEmptyView.swift in Sources */,
 				9273FA6A1C7E31C400EF3DDD /* InspirationCollectionViewCell.swift in Sources */,
+				925824D41F71600A00FC3606 /* Interactor.swift in Sources */,
 				9273FA6C1C7F7DD500EF3DDD /* PalettesViewController.swift in Sources */,
+				925824D21F7154A500FC3606 /* DismissAnimator.swift in Sources */,
 				9273FAA71C86627300EF3DDD /* PaletteDetailColorCell.swift in Sources */,
 				928EA1E61C8760B500981E0D /* PaletteDetailDeleteCell.swift in Sources */,
 				9273FA501C7C09DA00EF3DDD /* UIView+snapShotExtension.swift in Sources */,

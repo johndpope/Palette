@@ -21,6 +21,10 @@ class CameraViewController: UIViewController {
     private let cameraManager = CameraManager()
     private let picker = UIImagePickerController()
     
+    fileprivate lazy var interactor: Interactor = {
+        return Interactor()
+    }()
+    
     var photo: UIImage?
     var didSavePalette: (() -> ())?
     
@@ -105,6 +109,9 @@ class CameraViewController: UIViewController {
             let dvc: SwatchPickerViewController = segue.destination as! SwatchPickerViewController
             dvc.didSavePalette = didSavePalette
             dvc.mainImage = photo!
+            dvc.didSavePalette = didSavePalette
+            dvc.transitioningDelegate = self
+            dvc.interactor = interactor
         }
     }
 }
@@ -122,3 +129,12 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
     }
 }
 
+extension CameraViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+}
