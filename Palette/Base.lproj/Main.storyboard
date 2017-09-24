@@ -236,9 +236,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Z9f-SG-s9r" appends="YES" id="c4A-rP-D1n"/>
-                                </connections>
                             </view>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dlX-mp-4TG">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -249,10 +246,13 @@
                                 <gestureRecognizers/>
                                 <blurEffect style="light"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="b7i-LQ-TVf" appends="YES" id="eX3-fp-6Ri"/>
-                                    <outletCollection property="gestureRecognizers" destination="Z9f-SG-s9r" appends="YES" id="M67-TU-nac"/>
+                                    <outletCollection property="gestureRecognizers" destination="b7i-LQ-TVf" appends="YES" id="08Y-WM-1q2"/>
+                                    <outletCollection property="gestureRecognizers" destination="Z9f-SG-s9r" appends="YES" id="aZO-T1-kfZ"/>
                                 </connections>
                             </visualEffectView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pull_down" translatesAutoresizingMaskIntoConstraints="NO" id="o3i-lO-teo">
+                                <rect key="frame" x="164.5" y="25" width="46" height="20"/>
+                            </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pL1-em-sYb">
                                 <rect key="frame" x="10" y="71" width="355" height="525"/>
                                 <subviews>
@@ -361,16 +361,15 @@
                             <constraint firstItem="pL1-em-sYb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1dX-5r-YWr"/>
                             <constraint firstItem="dlX-mp-4TG" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2Pt-jY-xvV"/>
                             <constraint firstItem="pL1-em-sYb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="QfQ-E2-8Mt"/>
+                            <constraint firstItem="pL1-em-sYb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="o3i-lO-teo" secondAttribute="bottom" id="VMX-Uy-P6u"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pL1-em-sYb" secondAttribute="bottom" constant="10" id="Wrj-Vv-Xqs"/>
-                            <constraint firstItem="pL1-em-sYb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="XMV-EG-7Th"/>
                             <constraint firstAttribute="trailing" secondItem="pL1-em-sYb" secondAttribute="trailing" constant="10" id="b3r-sE-ayw"/>
                             <constraint firstAttribute="bottom" secondItem="dlX-mp-4TG" secondAttribute="bottom" id="eLL-th-3Id"/>
                             <constraint firstAttribute="trailing" secondItem="dlX-mp-4TG" secondAttribute="trailing" id="jvp-eD-MDd"/>
                             <constraint firstItem="dlX-mp-4TG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kBK-uG-WWu"/>
+                            <constraint firstItem="o3i-lO-teo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nTh-67-8Zt"/>
+                            <constraint firstItem="o3i-lO-teo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="5" id="xoq-jK-VSS"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="b7i-LQ-TVf" appends="YES" id="dHk-t4-Hhs"/>
-                        </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
@@ -394,7 +393,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-511" y="1563"/>
+            <point key="canvasLocation" x="-511.19999999999999" y="1562.9685157421291"/>
         </scene>
         <!-- -->
         <scene sceneID="2Ed-7H-UrH">
@@ -680,6 +679,7 @@
         <image name="ic_camera_roll" width="24" height="24"/>
         <image name="ic_delete_forever" width="24" height="24"/>
         <image name="ic_save" width="30" height="30"/>
+        <image name="pull_down" width="46" height="20"/>
         <image name="shutter_button" width="80" height="80"/>
         <image name="swatch_picker" width="30" height="30"/>
     </resources>
