@@ -232,8 +232,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Y7-FH-nh9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Z9f-SG-s9r" appends="YES" id="c4A-rP-D1n"/>
+                                </connections>
+                            </view>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dlX-mp-4TG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="p2K-M2-XyA">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <gestureRecognizers/>
+                                <blurEffect style="light"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="b7i-LQ-TVf" appends="YES" id="eX3-fp-6Ri"/>
+                                    <outletCollection property="gestureRecognizers" destination="Z9f-SG-s9r" appends="YES" id="M67-TU-nac"/>
+                                </connections>
+                            </visualEffectView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pL1-em-sYb">
-                                <rect key="frame" x="10" y="80" width="355" height="525"/>
+                                <rect key="frame" x="10" y="71" width="355" height="525"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gm-Jc-Gn0" customClass="SwatchPickerView" customModule="Palette" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="355"/>
@@ -334,46 +355,27 @@
                                     <constraint firstAttribute="trailing" secondItem="QRo-zm-iXo" secondAttribute="trailing" constant="15" id="zvS-ss-dQu"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avQ-4E-JY4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZg-LS-6tw">
-                                        <rect key="frame" x="20" y="20" width="41" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="0gS-q0-1yd"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <state key="normal" title="Back"/>
-                                        <connections>
-                                            <action selector="cancelButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f7W-Lv-8Oo"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="NZg-LS-6tw" secondAttribute="bottom" id="2CS-uN-hqi"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NZg-LS-6tw" secondAttribute="trailing" constant="20" id="cqT-9j-gTC"/>
-                                    <constraint firstAttribute="height" constant="60" id="jNI-Uy-Dqk"/>
-                                    <constraint firstItem="NZg-LS-6tw" firstAttribute="leading" secondItem="avQ-4E-JY4" secondAttribute="leading" constant="20" id="lc1-SP-dfI"/>
-                                </constraints>
-                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pL1-em-sYb" secondAttribute="bottom" constant="10" id="7Wt-Jz-Ukd"/>
-                            <constraint firstItem="avQ-4E-JY4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Gsj-v2-tqW"/>
-                            <constraint firstItem="avQ-4E-JY4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="I1v-1J-VEq"/>
+                            <constraint firstItem="pL1-em-sYb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1dX-5r-YWr"/>
+                            <constraint firstItem="dlX-mp-4TG" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2Pt-jY-xvV"/>
                             <constraint firstItem="pL1-em-sYb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="QfQ-E2-8Mt"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pL1-em-sYb" secondAttribute="bottom" constant="10" id="Wrj-Vv-Xqs"/>
+                            <constraint firstItem="pL1-em-sYb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="XMV-EG-7Th"/>
                             <constraint firstAttribute="trailing" secondItem="pL1-em-sYb" secondAttribute="trailing" constant="10" id="b3r-sE-ayw"/>
-                            <constraint firstItem="pL1-em-sYb" firstAttribute="top" secondItem="avQ-4E-JY4" secondAttribute="bottom" constant="20" id="qL5-h1-2v1"/>
-                            <constraint firstAttribute="trailing" secondItem="avQ-4E-JY4" secondAttribute="trailing" id="vTb-Zs-w00"/>
+                            <constraint firstAttribute="bottom" secondItem="dlX-mp-4TG" secondAttribute="bottom" id="eLL-th-3Id"/>
+                            <constraint firstAttribute="trailing" secondItem="dlX-mp-4TG" secondAttribute="trailing" id="jvp-eD-MDd"/>
+                            <constraint firstItem="dlX-mp-4TG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kBK-uG-WWu"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="b7i-LQ-TVf" appends="YES" id="dHk-t4-Hhs"/>
+                        </connections>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="addSwatchButton" destination="yPv-UC-L1I" id="1f2-xY-zUT"/>
                         <outlet property="containerView" destination="pL1-em-sYb" id="J2t-Q6-QBg"/>
-                        <outlet property="headerView" destination="avQ-4E-JY4" id="7b6-8H-lHD"/>
                         <outlet property="magnifyingView" destination="fWq-p0-l1k" id="8se-Vx-ggt"/>
                         <outlet property="saveButton" destination="QRo-zm-iXo" id="7Ed-hD-Jrt"/>
                         <outlet property="swatchPickerView" destination="6gm-Jc-Gn0" id="iZT-vI-kbu"/>
@@ -381,6 +383,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Z9f-SG-s9r">
+                    <connections>
+                        <action selector="didPan:" destination="BYZ-38-t0r" id="XSJ-rc-fFQ"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="b7i-LQ-TVf">
+                    <connections>
+                        <action selector="didTapOutsideContainer:" destination="BYZ-38-t0r" id="xZJ-zZ-HIe"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-511" y="1563"/>
         </scene>
@@ -551,7 +563,7 @@
                         <outlet property="flashButton" destination="POP-bF-WUB" id="fch-0E-ep4"/>
                         <outlet property="galleryButton" destination="SvJ-nQ-znc" id="Ao0-yg-gcS"/>
                         <outlet property="shutterButton" destination="gMO-Om-cez" id="4hT-6z-WHi"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="presentSwatchPicker" id="MyB-bl-qJg"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="presentSwatchPicker" modalPresentationStyle="overCurrentContext" id="MyB-bl-qJg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ya1-Il-GWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -614,7 +626,7 @@
                                         <connections>
                                             <outlet property="cellImageView" destination="8rW-Qd-rxG" id="Dqp-Yf-qCH"/>
                                             <outlet property="photoTitleLabel" destination="7hT-m3-tvh" id="Sxg-nc-VKS"/>
-                                            <segue destination="BYZ-38-t0r" kind="presentation" identifier="presentSwatchPicker" id="K3a-rN-1jg"/>
+                                            <segue destination="BYZ-38-t0r" kind="presentation" identifier="presentSwatchPicker" modalPresentationStyle="overCurrentContext" id="K3a-rN-1jg"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -672,6 +684,6 @@
         <image name="swatch_picker" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MyB-bl-qJg"/>
+        <segue reference="K3a-rN-1jg"/>
     </inferredMetricsTieBreakers>
 </document>

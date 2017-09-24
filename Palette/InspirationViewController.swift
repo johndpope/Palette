@@ -30,6 +30,10 @@ class InspirationViewController: UIViewController {
         return UIRefreshControl()
     }()
     
+    fileprivate lazy var interactor: Interactor = {
+        return Interactor()
+    }()
+    
     @IBOutlet private var collectionView: UICollectionView!
     
     var didSavePalette: (() -> ())?
@@ -56,6 +60,8 @@ class InspirationViewController: UIViewController {
             let dvc: SwatchPickerViewController = segue.destination as! SwatchPickerViewController
             dvc.mainImage = cellAtIndex.cellImageView.image
             dvc.didSavePalette = didSavePalette
+            dvc.transitioningDelegate = self
+            dvc.interactor = interactor
         }
     }
     
@@ -157,13 +163,21 @@ extension InspirationViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension InspirationViewController: DZNEmptyDataSetSource {
-
     func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
         return emptyView
     }
-    
 }
 
 extension InspirationViewController: DZNEmptyDataSetDelegate {
 
+}
+
+extension InspirationViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
 }
