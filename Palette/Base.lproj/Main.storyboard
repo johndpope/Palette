@@ -383,16 +383,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="Z9f-SG-s9r">
-                    <connections>
-                        <action selector="didPan:" destination="BYZ-38-t0r" id="XSJ-rc-fFQ"/>
-                    </connections>
-                </panGestureRecognizer>
                 <tapGestureRecognizer id="b7i-LQ-TVf">
                     <connections>
                         <action selector="didTapOutsideContainer:" destination="BYZ-38-t0r" id="xZJ-zZ-HIe"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Z9f-SG-s9r">
+                    <connections>
+                        <action selector="didPan:" destination="BYZ-38-t0r" id="XSJ-rc-fFQ"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-511" y="1563"/>
         </scene>
