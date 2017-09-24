@@ -376,6 +376,7 @@
                         <outlet property="addSwatchButton" destination="yPv-UC-L1I" id="1f2-xY-zUT"/>
                         <outlet property="containerView" destination="pL1-em-sYb" id="J2t-Q6-QBg"/>
                         <outlet property="magnifyingView" destination="fWq-p0-l1k" id="8se-Vx-ggt"/>
+                        <outlet property="pullDownImageView" destination="o3i-lO-teo" id="ezH-Oh-CLI"/>
                         <outlet property="saveButton" destination="QRo-zm-iXo" id="7Ed-hD-Jrt"/>
                         <outlet property="swatchPickerView" destination="6gm-Jc-Gn0" id="iZT-vI-kbu"/>
                         <outlet property="swatchStackView" destination="YM0-AF-uGU" id="BSK-IY-awI"/>

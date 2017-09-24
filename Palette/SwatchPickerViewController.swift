@@ -17,7 +17,8 @@ class SwatchPickerViewController: UIViewController {
     @IBOutlet private weak var swatchPickerView: SwatchPickerView!
     @IBOutlet private weak var addSwatchButton: UIButton!
     @IBOutlet private weak var saveButton: UIButton!
-
+    @IBOutlet private weak var pullDownImageView: UIImageView!
+    
     fileprivate var swatchArray = [UIColor]()
     fileprivate var mag: YPMagnifyingGlass!
     
@@ -50,8 +51,15 @@ class SwatchPickerViewController: UIViewController {
         addSwatchButton.tintColor = swatchPickerView.colorAtPickerLocation()
         
         saveButton.isEnabled = false
-        
         containerView.layer.cornerRadius = 9
+        pullDownImageView.layer.opacity = 0.0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animate(withDuration: 0.5, animations: {
+            self.pullDownImageView.layer.opacity = 1.0
+        })
     }
     
     private func addSwatchToCollection(_ swatch:UIColor) {
